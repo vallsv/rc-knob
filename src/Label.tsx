@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PropsWithKnobState } from 'types';
+import type { PropsWithKnobState } from './types';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => {
     const rad = (angle * Math.PI) / 180;

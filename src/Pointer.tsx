@@ -1,5 +1,5 @@
 import React, { isValidElement } from 'react';
-import type { PropsWithKnobState } from 'types';
+import type { PropsWithKnobState } from './types';
 
 const PointerShape = ({
     type,

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PropsWithKnobState } from 'types';
+import type { PropsWithKnobState } from './types';
 import { Range } from './Range';
 
 interface Props {
