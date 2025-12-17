@@ -1,12 +1,15 @@
+---
+title: Custom
+description: Create custom component elements
+---
+
+import colors from '@site/src/colors';
+import { Knob, Pointer, Range, Label, Scale, Arc, Value } from 'rc-knob';
+
 
 ### Custom pointer
 
-```js
-import React from 'react';
-import { Knob, Arc, Pointer } from '../lib/index';
-import colors from './assets/colors.js';
-
-function CustomPointer({ width, height, percentage }) {
+export const CustomPointer = ({ width, height, percentage }) => {
   return (
     <rect
       width={width}
@@ -14,7 +17,7 @@ function CustomPointer({ width, height, percentage }) {
       fill={`hsl(${Math.round(360 * percentage)}, 50%, 50%)`}
     />
   )
-}
+};
 
 <Knob
   size={100}
@@ -35,18 +38,13 @@ function CustomPointer({ width, height, percentage }) {
     radius={0}
     color={colors.primary}>
     <CustomPointer />
-  </Pointer>,
-</Knob>;
-```
+  </Pointer>
+</Knob>
+
 
 ### Custom scale
 
-```js
-import React from 'react';
-import { Knob, Scale } from '../lib/index';
-import colors from './assets/colors.js';
-
-function customScaleTick({
+export const customScaleTick = ({
     tickWidth,
     tickHeight,
     translateX,
@@ -56,7 +54,7 @@ function customScaleTick({
     center,
     active,
     i,
-}) {
+}) => {
   return (
     <rect
       fill={`hsl(${(240 + (40 - i) * 4) % 360},100%, 60%)`}
@@ -70,7 +68,7 @@ function customScaleTick({
       `}
     />
   )
-}
+};
 
 <Knob
   size={100}
@@ -87,5 +85,4 @@ function customScaleTick({
     radius={45}
     fn={customScaleTick}
   />
-</Knob>;
-```
+</Knob>

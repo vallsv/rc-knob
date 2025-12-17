@@ -1,9 +1,13 @@
-### Arc & pointer
+---
+title: Basic
+description: Combinations with the default component elements
+---
 
-```js
-import React from 'react';
-import { Knob, Arc, Pointer } from '../lib/index';
-import colors from './assets/colors.js';
+import colors from '@site/src/colors';
+import BasicExample1 from '@site/src/components/BasicExample1';
+import { Knob, Pointer, Range, Label, Scale, Arc, Value } from 'rc-knob';
+
+### Arc & pointer
 
 <Knob 
   size={100}  
@@ -24,56 +28,15 @@ import colors from './assets/colors.js';
     type="rect"
     color={colors.primary}
   />
-</Knob>;
-```
+</Knob>
+
 
 ### Arc & pointer & value
 
-```js
-import React from 'react';
-import { Knob, Arc, Pointer, Value } from '../lib/index';
-import colors from './assets/colors.js';
+<BasicExample1 />
 
-<Knob 
-  size={100}  
-  angleOffset={220} 
-  angleRange={280}
-  min={0}
-  max={100}
-  onChange={value => console.log(value)}
->
-  <Arc 
-    arcWidth={5}
-    color={colors.primary}
-    radius={47.5} 
-  />
-  <Pointer 
-    width={5}
-    radius={40}
-    type="circle"
-    color={colors.secondary}
-  />
-  <Value 
-    marginBottom={40} 
-    className="value2" 
-  />
-</Knob>;
-```
-
-```css
-.value2 {
-  font-family: 'Work Sans', sans-serif;
-  fill: #fc5a96;
-  font-size: 30px;
-}
-```
 
 ### Arc & pointer
-
-```js
-import React from 'react';
-import { Knob, Scale, Pointer } from '../lib/index';
-import colors from './assets/colors.js';
 
 <Knob 
   size={100}  
@@ -103,15 +66,10 @@ import colors from './assets/colors.js';
     type="rect"
     color={colors.primary}
   />
-</Knob>;
-```
+</Knob>
+
 
 ### Scale & pointer
-
-```js
-import React from 'react';
-import { Knob, Scale, Pointer } from '../lib/index';
-import colors from './assets/colors.js';
 
 <Knob 
   size={100}  
@@ -143,15 +101,10 @@ import colors from './assets/colors.js';
     type="rect"
     color={colors.secondary}
   />
-</Knob>;
-```
+</Knob>
+
 
 ### Range and needle
-
-```jsx
-import React from 'react';
-import { Knob, Range, Pointer, Scale } from '../lib/index';
-
 
 <Knob
   size={100}
@@ -199,15 +152,10 @@ import { Knob, Range, Pointer, Scale } from '../lib/index';
       type="triangle"
       color="black"
     />
-</Knob>;
-```
+</Knob>
+
 
 ### Value and triangle
-
-```jsx
-import React from 'react';
-import { Knob, Range, Pointer, Scale, Value } from '../lib/index';
-
 
 <Knob
   size={100}
@@ -241,5 +189,4 @@ import { Knob, Range, Pointer, Scale, Value } from '../lib/index';
       marginBottom={40}
       className="value3"
       />
-</Knob>;
-```
+</Knob>

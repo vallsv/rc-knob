@@ -1,6 +1,6 @@
 {
-    "name": "rc-knob",
-    "version": "1.2.0",
+    "name": "rc-knob-workspace",
+    "version": "0.0.0",
     "private": true,
     "description": "React component library to render knobs",
     "homepage": "https://eskimoblood.github.io/rc-knob/",
@@ -12,19 +12,15 @@
         "url": "https://github.com/eskimoblood/rc-knob/issues"
     },
     "workspaces": [
-        "lib"
+        "lib",
+        "docusaurus"
     ],
     "scripts": {
         "prepublishOnly": "cd lib && npm run release",
-        "release:dev": "cd lib && npm run build:dev",
         "release": "cd lib && npm run build:prod",
-        "build:prod": "NODE_ENV=production cd lib && rollup -c",
-        "build:dev": "NODE_ENV=development cd lib && rollup -c",
-        "styleguide": "styleguidist server",
-        "styleguide:build": "styleguidist build",
-        "site:serve": "styleguidist server",
-        "site:dist": "styleguidist build",
-        "site:deploy": "gh-pages -d dist",
+        "site:start": "cd docusaurus && yarn start",
+        "site:build": "cd docusaurus && yarn build",
+        "site:deploy": "gh-pages -d docusaurus/build",
         "test": "cd lib && jest"
     },
     "author": {

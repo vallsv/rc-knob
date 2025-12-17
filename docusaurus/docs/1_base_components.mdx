@@ -1,17 +1,22 @@
+---
+sidebar_position: 1
+title: Base components
+---
+
+import colors from '@site/src/colors';
+import ValueExample from '@site/src/components/ValueExample';
+import { Knob, Pointer, Range, Label, Scale, Arc } from 'rc-knob';
+
 
 The display part of the knob is splitted into the `Pointer`, `Scale`, `Arc`,
 `Value` and few others.
+
 
 ## `Pointer`
 
 This component displays the location of the knob.
 
 Three shapes are available `circle`, `rect`, `triangle`.
-
-```js
-import React from 'react';
-import { Knob, Pointer } from '../lib/index';
-import colors from './assets/colors.js';
 
 <Knob
   size={100}
@@ -26,19 +31,14 @@ import colors from './assets/colors.js';
     type="circle"
     color={colors.primary}
     />
-</Knob>;
-```
+</Knob>
+
 
 ## `Arc`
 
 This component displays 2 angular zones.
 The foreground one is from the `min` to the knob location.
 The background one is from the knob location to `max`.
-
-```js
-import React from 'react';
-import { Knob, Arc } from '../lib/index';
-import colors from './assets/colors.js';
 
 <Knob
   size={100}
@@ -52,17 +52,12 @@ import colors from './assets/colors.js';
     color={colors.primary}
     background={colors.secondary}
     />
-</Knob>;
-```
+</Knob>
+
 
 ## `Scale`
 
 This component draw graduation.
-
-```js
-import React from 'react';
-import { Knob, Scale } from '../lib/index';
-import colors from './assets/colors.js';
 
 <Knob
   size={200}
@@ -79,50 +74,20 @@ import colors from './assets/colors.js';
     color={colors.secondary}
     activeColor={colors.primary}
     />
-</Knob>;
-```
+</Knob>
+
 
 ## `Value`
 
 This component draw the value of the knob.
 
-```jsx
-import React from 'react';
-import { Knob, Value } from '../lib/index';
-
-
-<Knob
-  size={100}
-  angleOffset={220}
-  angleRange={280}
-  min={0}
-  max={100}
-  >
-  <Value
-    marginBottom={10} 
-    className="value"
-    />
-</Knob>;
-```
-
-```css
-.value {
-  font-family: 'Eczar', serif;
-  fill: #fc5a96;
-  font-size: 50px;
-}
-```
+<ValueExample />
 
 
 ## `Label`
 
 This component draw a label at a fixed location
 using polar coordinates.
-
-```jsx
-import React from 'react';
-import { Knob, Label } from '../lib/index';
-
 
 <Knob
   size={100}
@@ -146,18 +111,13 @@ import { Knob, Label } from '../lib/index';
     <Label percentage={1.0}
       radius={40} label="100%"
       style={{fontSize: "50%"}} />
-</Knob>;
-```
+</Knob>
+
 
 ## `Range`
 
 This component draw a range between two values
 using polar coordinates.
-
-```jsx
-import React from 'react';
-import { Knob, Range } from '../lib/index';
-
 
 <Knob
   size={100}
@@ -184,5 +144,4 @@ import { Knob, Range } from '../lib/index';
       percentageFrom={0.75}
       percentageTo={1.0}
       />
-</Knob>;
-```
+</Knob>

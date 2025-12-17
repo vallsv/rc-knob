@@ -1,0 +1,23 @@
+.styledKnob {
+  circle,
+  path {
+      fill: #fc5a96;
+      opacity: 0.4;
+      transition: 
+        opacity 100ms, 
+        color 100ms 
+        ease-in-out;
+  }
+}
+
+.styledKnob:hover circle,
+.styledKnob:hover path,
+.styledKnob:focus circle,
+.styledKnob:focus path {
+    fill: #180094;
+    opacity: 1;
+    transition: 
+      opacity 450ms, 
+      color 450ms 
+      ease-in-out;
+}

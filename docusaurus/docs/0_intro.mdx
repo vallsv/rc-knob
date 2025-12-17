@@ -1,11 +1,15 @@
+---
+slug: /
+sidebar_position: 0
+title: Introduction
+---
+
+import colors from '@site/src/colors';
+import { Knob, Pointer, Range, Label, Arc } from 'rc-knob';
+
 Renders a react knob component that can be widely customised.
 
-```jsx
-import React from 'react';
-import { Knob, Arc, Pointer } from '../lib/index';
-import colors from './assets/colors.js';
-
-<Knob 
+<Knob
   size={100}  
   angleOffset={220} 
   angleRange={280}
@@ -13,12 +17,12 @@ import colors from './assets/colors.js';
   min={0}
   max={100}
 >
-  <Arc 
+  <Arc
     arcWidth={5}
     color={colors.primary}
     background={colors.shadow}
   />
-  <Pointer 
+  <Pointer
     width={5}
     height={40}
     radius={10}
@@ -26,7 +30,6 @@ import colors from './assets/colors.js';
     color={colors.primary}
   />
 </Knob>
-```
 
 The base of all knobs is the Knob component which handles all of the user
 interaction and calculation of the knob value. The user can interact via
@@ -74,19 +77,9 @@ The `size` is the diameter of the knob.
 
 It is relative to the top of the knob, and clockwise.
 
-```jsx
-import React from 'react';
-import { Knob, Pointer, Range, Label } from '../lib/index';
-import colors from './assets/colors.js';
-
-
-function Marker({angle}) {
-    return (
-    <>
-    </>
-  );
-}
-
+export const Marker = ({angle}) => {
+  return (<></>);
+};
 
 <Knob
   size={150}
@@ -145,17 +138,11 @@ function Marker({angle}) {
       percentageFrom={0.5}
       percentageTo={1.0}
       />
-</Knob>;
-```
+</Knob>
 
 ### Anticlockwise
 
 If `angleRange` is negative, the interaction is anticlockwise.
-
-```jsx
-import React from 'react';
-import { Knob, Arc, Pointer } from '../lib/index';
-import colors from './assets/colors.js';
 
 <Knob 
   size={100}  
@@ -178,4 +165,3 @@ import colors from './assets/colors.js';
     color={colors.primary}
   />
 </Knob>
-```

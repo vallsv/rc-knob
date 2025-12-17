@@ -1,0 +1,21 @@
+.withFilter {
+  filter: url('#filter');
+}
+
+.withFilter .activeScale {
+  fill: #180094;
+  r: 2px;
+  transition: 100ms ease-in-out;
+}
+
+.withFilter .normalScale {
+  fill: #fc5a96;
+  r: 4px;
+  transition: 450ms ease-in-out;
+}
+
+.withFilter .pointer {
+  fill: rgba(255, 235, 59, 0.8);
+  r: 8px;
+  transition: 100ms ease-in-out;
+}
