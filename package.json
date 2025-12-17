@@ -16,8 +16,8 @@
         "docusaurus"
     ],
     "scripts": {
-        "prepublishOnly": "cd lib && npm run release",
-        "release": "cd lib && npm run build:prod",
+        "prepublishOnly": "cd lib && yarn prepublishOnly",
+        "release": "cd lib && yarn release",
         "site:start": "cd docusaurus && yarn start",
         "site:build": "cd docusaurus && yarn build",
         "site:deploy": "gh-pages -d docusaurus/build",
@@ -55,7 +55,6 @@
         "prettier": "^2.8.4",
         "react": ">=16.8.0",
         "react-dom": ">=16.8.0",
-        "react-styleguidist": "^11.1.7",
         "rollup": "^2.14.0",
         "rollup-plugin-babel": "^4.1.0",
         "rollup-plugin-commonjs": "^9.2.0",

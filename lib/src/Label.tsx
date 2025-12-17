@@ -37,6 +37,7 @@ export const Label = ({
     return (
         <g transform={`translate( ${center - p.x} ${center - p.y})`}>
             <text
+                // @ts-expect-error
                 style={{ userSelect, ...style }}
                 x="50%"
                 y="50%"

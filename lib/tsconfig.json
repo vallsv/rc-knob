@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "baseUrl": "src",
-        "outDir": "./lib/",
         "sourceMap": true,
         "strictNullChecks": true,
         "module": "esnext",
