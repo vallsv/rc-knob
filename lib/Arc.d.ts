@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import type { PropsWithKnobState } from 'types';
+import type { PropsWithKnobState } from './types';
 interface Props {
     percentage: number;
     color: string;
