@@ -1,7 +1,6 @@
 {
     "name": "rc-knob",
     "version": "1.2.0",
-    "private": true,
     "description": "React component library to render knobs",
     "homepage": "https://eskimoblood.github.io/rc-knob/",
     "repository": {
@@ -11,21 +10,25 @@
     "bugs": {
         "url": "https://github.com/eskimoblood/rc-knob/issues"
     },
-    "workspaces": [
-        "lib"
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib/index.js",
+        "lib/index.js.map",
+        "lib/*.d.ts"
     ],
     "scripts": {
-        "prepublishOnly": "cd lib && npm run release",
-        "release:dev": "cd lib && npm run build:dev",
-        "release": "cd lib && npm run build:prod",
-        "build:prod": "NODE_ENV=production cd lib && rollup -c",
-        "build:dev": "NODE_ENV=development cd lib && rollup -c",
+        "prepublishOnly": "npm run release",
+        "release:dev": "npm run build:dev",
+        "release": "npm run build:prod",
+        "build:prod": "NODE_ENV=production rollup -c",
+        "build:dev": "NODE_ENV=development rollup -c",
         "styleguide": "styleguidist server",
         "styleguide:build": "styleguidist build",
         "site:serve": "styleguidist server",
         "site:dist": "styleguidist build",
         "site:deploy": "gh-pages -d dist",
-        "test": "cd lib && jest"
+        "test": "jest"
     },
     "author": {
         "name": "Andreas Köberle"
