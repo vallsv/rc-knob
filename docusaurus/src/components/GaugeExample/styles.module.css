@@ -1,0 +1,20 @@
+.gauge {
+  .value {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold;
+    fill: black;
+    font-size: 25px;
+  }
+
+  .value-warning { fill: #eeb300; }
+
+  .value-danger { fill: #e44b02; }
+
+  .range {
+    fill: #6bca6c;
+  }
+
+  .range-warning { fill: #fccf41 }
+
+  .range-danger { fill: #fb5463 }
+}
