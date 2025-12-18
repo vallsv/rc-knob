@@ -1,36 +1,37 @@
 {
-    "name": "rc-knob-monorepo",
-    "version": "0.0.0",
-    "private": true,
-    "description": "React component library to render knobs",
-    "homepage": "https://eskimoblood.github.io/rc-knob/",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/eskimoblood/rc-knob.git"
-    },
-    "bugs": {
-        "url": "https://github.com/eskimoblood/rc-knob/issues"
-    },
-    "scripts": {
-        "prepublishOnly": "cd lib && pnpm prepublishOnly",
-        "publish": "cd lib && pnpm publish --access public",
-        "release": "cd lib && pnpm build",
-        "site:start": "cd docusaurus && pnpm start",
-        "site:build": "cd docusaurus && pnpm build",
-        "site:deploy": "gh-pages -d docusaurus/build",
-        "test": "cd lib && jest",
-        "clear": "",
-        "clearAll": "pnpm --recursive clear",
-        "installAll": "pnpm --recursive install"
-    },
+    "name": "@vallsv/rc-knob",
+    "version": "1.2.1",
     "author": {
         "name": "Andreas Köberle"
     },
     "license": "ISC",
+    "type": "module",
+    "sideEffects": false,
+    "description": "React component library to render knobs",
+    "homepage": "https://vallsv.github.io/rc-knob/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vallsv/rc-knob"
+    },
+    "bugs": {
+        "url": "https://github.com/vallsv/rc-knob/issues"
+    },
+    "files": [
+        "dist"
+    ],
+    "main": "dist/rc-knob.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc --p ./tsconfig.json && vite build",
+        "prepublishOnly": "npm run build",
+        "test": "jest",
+        "clear": "rm -rf dist && rm -rf node_modules"
+    },
     "peerDependencies": {
         "react": ">=16.8.0",
         "react-dom": ">=16.8.0"
     },
+    "dependencies": {},
     "devDependencies": {
         "@babel/core": "^7.14.8",
         "@babel/plugin-transform-modules-commonjs": "^7.2.0",
@@ -41,6 +42,7 @@
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^29.4.0",
         "@types/react": "^18.0.28",
+        "@vitejs/plugin-react": "^5.1.2",
         "babel-jest": "^24.0.0",
         "babel-loader": "^8.2.2",
         "babel-plugin-dynamic-import-node": "^2.2.0",
@@ -50,7 +52,6 @@
         "enzyme": "^3.8.0",
         "enzyme-adapter-react-16": "^1.8.0",
         "enzyme-to-json": "^3.3.5",
-        "gh-pages": "^3.2.3",
         "jest": "^29.4.3",
         "prettier": "^2.8.4",
         "react": ">=16.8.0",
@@ -64,10 +65,11 @@
         "ts-jest": "^29.0.5",
         "ts-loader": "^9.4.2",
         "typescript": "^4.9.5",
+        "vite": "^7.3.0",
+        "vite-plugin-dts": "^4.5.4",
         "webpack": "^5.46.0",
         "webpack-cli": "^4.7.2"
     },
-    "dependencies": {},
     "prettier": {
         "trailingComma": "all",
         "tabWidth": 4,

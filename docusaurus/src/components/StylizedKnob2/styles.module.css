@@ -1,0 +1,11 @@
+.activeScale {
+    fill: #FC5A96;
+    r: 5px;
+    transition: 100ms ease-in-out;
+}
+
+.normalScale {
+    fill: #180094;
+    r: 1px;
+    transition: 450ms ease-in-out;
+}
