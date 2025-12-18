@@ -2,12 +2,13 @@
 
 Renders a react knob component that can be widely customised.
 
-![Few knobs](./docusaurus/src/assets/preview.png)
+![Few knobs](./lib/preview.png)
 
 ## Installation
+
 ```
-npm install rc-knob
-yarn add rc-knob
+npm install @vallsv/rc-knob
+yarn add @vallsv/rc-knob
 ```
 
 ## Examples
