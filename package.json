@@ -1,5 +1,5 @@
 {
-    "name": "rc-knob-workspace",
+    "name": "rc-knob-monorepo",
     "version": "0.0.0",
     "private": true,
     "description": "React component library to render knobs",
@@ -11,17 +11,17 @@
     "bugs": {
         "url": "https://github.com/eskimoblood/rc-knob/issues"
     },
-    "workspaces": [
-        "lib",
-        "docusaurus"
-    ],
     "scripts": {
-        "prepublishOnly": "cd lib && yarn prepublishOnly",
-        "release": "cd lib && yarn release",
-        "site:start": "cd docusaurus && yarn start",
-        "site:build": "cd docusaurus && yarn build",
+        "prepublishOnly": "cd lib && pnpm prepublishOnly",
+        "publish": "cd lib && pnpm publish --access public",
+        "release": "cd lib && pnpm build",
+        "site:start": "cd docusaurus && pnpm start",
+        "site:build": "cd docusaurus && pnpm build",
         "site:deploy": "gh-pages -d docusaurus/build",
-        "test": "cd lib && jest"
+        "test": "cd lib && jest",
+        "clear": "",
+        "clearAll": "pnpm --recursive clear",
+        "installAll": "pnpm --recursive install"
     },
     "author": {
         "name": "Andreas Köberle"

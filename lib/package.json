@@ -24,7 +24,8 @@
     "scripts": {
         "build": "tsc --p ./tsconfig.json && vite build",
         "prepublishOnly": "npm run build",
-        "test": "jest"
+        "test": "jest",
+        "clear": "rm -rf dist && rm -rf node_modules"
     },
     "peerDependencies": {
         "react": ">=16.8.0",
