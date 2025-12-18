@@ -16,8 +16,8 @@ const config: Config = {
   url: 'https://vallsv.github.io/',
   baseUrl: '/rc-knob/',
 
-  organizationName: 'rc-knob',
-  projectName: 'rc-knob',
+  organizationName: '@vallsv/rc-knob',
+  projectName: '@vallsv/rc-knob',
 
   onBrokenLinks: 'throw',
 
@@ -47,7 +47,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'rc-knob',
+      title: '@vallsv/rc-knob',
       logo: {
         alt: 'knob logo',
         src: 'img/logo.svg',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Knob, Arc, Pointer, Scale } from 'rc-knob';
+import { Knob, Arc, Pointer, Scale } from '@vallsv/rc-knob';
 
 
 export default function KnobExample({size}) {

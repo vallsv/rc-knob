@@ -1,5 +1,5 @@
 import React from 'react';
-import { Knob, Arc, Pointer } from 'rc-knob';
+import { Knob, Arc, Pointer } from '@vallsv/rc-knob';
 import colors from './assets/colors.js';
 
 export function Intro0() {

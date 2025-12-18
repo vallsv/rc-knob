@@ -1,5 +1,5 @@
 {
-    "name": "rc-knob",
+    "name": "@vallsv/rc-knob",
     "version": "1.2.1",
     "author": {
         "name": "Andreas Köberle"

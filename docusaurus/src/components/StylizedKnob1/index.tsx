@@ -1,5 +1,5 @@
 import React from 'react';
-import { Knob, Arc, Pointer } from 'rc-knob';
+import { Knob, Arc, Pointer } from '@vallsv/rc-knob';
 import styles from './styles.module.css';
 
 

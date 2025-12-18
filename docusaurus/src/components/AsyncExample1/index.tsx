@@ -1,6 +1,6 @@
 import React from 'react'
 import { MockMotor } from '../../assets/MockMotor'
-import { Knob, Value, Pointer, Range } from 'rc-knob';
+import { Knob, Value, Pointer, Range } from '@vallsv/rc-knob';
 
 function MotorKnob({
   size,

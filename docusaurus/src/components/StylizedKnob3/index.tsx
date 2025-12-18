@@ -1,5 +1,5 @@
 import React from 'react';
-import { Knob, Scale } from 'rc-knob';
+import { Knob, Scale } from '@vallsv/rc-knob';
 import styles from './styles.module.css';
 
 export default function KnobExample() {
