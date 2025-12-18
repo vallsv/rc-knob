@@ -37,7 +37,7 @@ export const MockMotor = ({
   React.useEffect(() => {
     const timer = setInterval(() => {
       updatePosition();
-    }, 1000);
+    }, 100);
     return () => clearInterval(timer);
   }, [target, internalTime, internalPosition]);
 
