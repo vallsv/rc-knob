@@ -2,14 +2,20 @@ import React from 'react';
 import { MockMotor } from '../../helpers/MockMotor';
 import { Knob, Value, Pointer, Range } from '@vallsv/rc-knob';
 
-function MotorKnob({ size, value, target = null, onChange = () => {} }) {
+function MotorKnob(props: {
+    size: number;
+    value: number;
+    target?: number;
+    onChange: (position: number) => void;
+}) {
+    const { size, value, target = null, onChange = () => {} } = props;
     const [editedValue, setEditedValue] = React.useState(null);
 
     function onKnobInteractiveChange(value) {
         setEditedValue(value);
     }
 
-    function onKnobMouseUp(e) {
+    function onKnobMouseUp() {
         setEditedValue(null);
     }
 
@@ -86,11 +92,11 @@ export default function Example() {
     const [position, setPosition] = React.useState(initialPosition);
     const [target, setTarget] = React.useState(null);
 
-    function onKnobChange(position) {
+    function onKnobChange(position: number) {
         setTarget(position);
     }
 
-    function onMotorChange(position) {
+    function onMotorChange(position: number) {
         setPosition(position);
     }
 
