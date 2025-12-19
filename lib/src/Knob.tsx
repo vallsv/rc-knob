@@ -1,4 +1,4 @@
-import React, { isValidElement, KeyboardEventHandler } from 'react';
+import React, { isValidElement } from 'react';
 import useUpdate from './useUpdate';
 import { Arc } from './Arc';
 import { Pointer } from './Pointer';

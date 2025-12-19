@@ -1,5 +1,5 @@
 import React from 'react';
-import type { KnobState, PropsWithKnobState } from './types';
+import type { PropsWithKnobState } from './types';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => ({
     x: center + radius * Math.cos(angle),
