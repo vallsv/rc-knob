@@ -27,7 +27,7 @@ function renderCircle({
     activeClassName,
     className,
 }: RenderProps & { tickWidth: number }) {
-    return (_: unknown, i: number) => (
+    const Cmp = (_: unknown, i: number) => (
         <circle
             r={tickWidth}
             key={i}
@@ -40,6 +40,8 @@ function renderCircle({
         `}
         />
     );
+    Cmp.displayName = 'Cmp';
+    return Cmp;
 }
 
 function renderRect({
@@ -56,7 +58,7 @@ function renderRect({
     activeClassName,
     className,
 }: RenderProps & { tickWidth: number; tickHeight: number }) {
-    return (_: unknown, i: number) => (
+    const Cmp = (_: unknown, i: number) => (
         <rect
             className={i === active ? activeClassName : className}
             fill={i === active ? activeColor : color}
@@ -70,6 +72,8 @@ function renderRect({
         `}
         />
     );
+    Cmp.displayName = 'Cmp';
+    return Cmp;
 }
 
 export interface RenderCustomProps extends RenderProps {
