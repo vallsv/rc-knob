@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useRef } from 'react';
+import { useReducer, useEffect, useRef, RefObject } from 'react';
 import {
     calculatePositionFromMouseAngle,
     getValueFromPercentage,
@@ -25,8 +25,8 @@ interface InternalState {
     multiRotation: boolean;
     size: number;
     steps?: number;
-    svg: any;
-    container: any;
+    svg: RefObject<SVGSVGElement>;
+    container: RefObject<HTMLDivElement>;
 }
 
 interface KnobConfiguration extends Callbacks {

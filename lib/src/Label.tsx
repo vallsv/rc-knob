@@ -14,7 +14,7 @@ interface Props {
     size: number;
     decimalPlace: number;
     className: string;
-    style: Record<string, any>;
+    style: Record<string, unknown>;
     userSelect?: 'auto' | 'text' | 'none' | 'contain' | 'all';
 }
 

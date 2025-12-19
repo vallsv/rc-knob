@@ -91,12 +91,11 @@ export const Knob = ({
     return (
         <div
             ref={container}
-            // @ts-expect-error
-            tabIndex="0"
+            tabIndex={0}
             style={{ outline: 'none', width: size, height: size }}
             aria-valuemax={max}
             aria-valuemin={min}
-            aria-valuenow={value}
+            aria-valuenow={value ?? undefined}
             aria-valuetext={ariaValueText}
             aria-labelledby={ariaLabelledBy}
             onKeyDown={readOnly ? undefined : onKeyDown}
