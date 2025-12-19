@@ -3,14 +3,12 @@ sidebar_position: 1
 title: Base components
 ---
 
-import colors from '@site/src/colors';
+import colors from '@site/src/helpers/colors';
 import ValueExample from '@site/src/components/ValueExample';
 import { Knob, Pointer, Range, Label, Scale, Arc } from 'rc-knob';
 
-
 The display part of the knob is splitted into the `Pointer`, `Scale`, `Arc`,
 `Value` and few others.
-
 
 ## `Pointer`
 
@@ -18,21 +16,9 @@ This component displays the location of the knob.
 
 Three shapes are available `circle`, `rect`, `triangle`.
 
-<Knob
-  size={100}
-  angleOffset={220}
-  angleRange={280}
-  min={0}
-  max={100}
-  >
-  <Pointer
-    width={3}
-    radius={40}
-    type="circle"
-    color={colors.primary}
-    />
+<Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
+    <Pointer width={3} radius={40} type="circle" color={colors.primary} />
 </Knob>
-
 
 ## `Arc`
 
@@ -40,42 +26,30 @@ This component displays 2 angular zones.
 The foreground one is from the `min` to the knob location.
 The background one is from the knob location to `max`.
 
-<Knob
-  size={100}
-  angleOffset={220}
-  angleRange={280}
-  min={0}
-  max={100}
-  >
-  <Arc 
-    arcWidth={5}
-    color={colors.primary}
-    background={colors.secondary}
-    />
+<Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
+    <Arc arcWidth={5} color={colors.primary} background={colors.secondary} />
 </Knob>
-
 
 ## `Scale`
 
 This component draw graduation.
 
 <Knob
-  size={200}
-  angleOffset={220}
-  angleRange={280}
-  min={0}
-  max={100}
-  steps={10}
-  >
-  <Scale 
-    tickWidth={3}
-    tickHeight={5}
-    radius={45}
-    color={colors.secondary}
-    activeColor={colors.primary}
+    size={200}
+    angleOffset={220}
+    angleRange={280}
+    min={0}
+    max={100}
+    steps={10}
+>
+    <Scale
+        tickWidth={3}
+        tickHeight={5}
+        radius={45}
+        color={colors.secondary}
+        activeColor={colors.primary}
     />
 </Knob>
-
 
 ## `Value`
 
@@ -83,65 +57,66 @@ This component draw the value of the knob.
 
 <ValueExample />
 
-
 ## `Label`
 
 This component draw a label at a fixed location
 using polar coordinates.
 
-<Knob
-  size={100}
-  angleOffset={220}
-  angleRange={280}
-  min={0}
-  max={100}
-  >
-    <Label percentage={0.0}
-      radius={40} label="0%"
-      style={{fontSize: "50%"}} />
-    <Label percentage={0.25}
-      radius={40} label="25%"
-      style={{fontSize: "50%"}} />
-    <Label percentage={0.5}
-      radius={40} label="50%"
-      style={{fontSize: "50%"}} />
-    <Label percentage={0.75}
-      radius={40} label="75%"
-      style={{fontSize: "50%"}} />
-    <Label percentage={1.0}
-      radius={40} label="100%"
-      style={{fontSize: "50%"}} />
+<Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
+    <Label
+        percentage={0.0}
+        radius={40}
+        label="0%"
+        style={{ fontSize: '50%' }}
+    />
+    <Label
+        percentage={0.25}
+        radius={40}
+        label="25%"
+        style={{ fontSize: '50%' }}
+    />
+    <Label
+        percentage={0.5}
+        radius={40}
+        label="50%"
+        style={{ fontSize: '50%' }}
+    />
+    <Label
+        percentage={0.75}
+        radius={40}
+        label="75%"
+        style={{ fontSize: '50%' }}
+    />
+    <Label
+        percentage={1.0}
+        radius={40}
+        label="100%"
+        style={{ fontSize: '50%' }}
+    />
 </Knob>
-
 
 ## `Range`
 
 This component draw a range between two values
 using polar coordinates.
 
-<Knob
-  size={100}
-  angleOffset={220}
-  angleRange={280}
-  min={0}
-  max={100}
-  >
+<Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
     <Range
-      arcWidth={10}
-      color="#e44b02"
-      percentageFrom={0.0}
-      percentageTo={0.5}
-      />
+        arcWidth={10}
+        color="#e44b02"
+        percentageFrom={0.0}
+        percentageTo={0.5}
+    />
     <Range
-      arcWidth={10}
-      color="#ffc90e"
-      percentageFrom={0.5}
-      percentageTo={0.75}
-      />
+        arcWidth={10}
+        color="#ffc90e"
+        percentageFrom={0.5}
+        percentageTo={0.75}
+    />
     <Range
-      arcWidth={10}
-      color="#6caa03"
-      percentageFrom={0.75}
-      percentageTo={1.0}
-      />
+        arcWidth={10}
+        color="#6caa03"
+        percentageFrom={0.75}
+        percentageTo={1.0}
+    />
 </Knob>
