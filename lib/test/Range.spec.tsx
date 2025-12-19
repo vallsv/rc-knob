@@ -1,6 +1,6 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import { Range } from '../src/Range'
+import React from 'react';
+import { shallow } from 'enzyme';
+import { Range } from '../src/Range';
 
 describe('Arc', () => {
     it('renders correct clockwise small', () => {
@@ -17,10 +17,10 @@ describe('Arc', () => {
                 color="lime"
                 value={0}
                 size={10}
-            />
-        )
-        expect(component).toMatchSnapshot()
-    })
+            />,
+        );
+        expect(component).toMatchSnapshot();
+    });
     it('renders correct clockwise large', () => {
         const component = shallow(
             <Range
@@ -35,10 +35,10 @@ describe('Arc', () => {
                 color="lime"
                 value={0}
                 size={10}
-            />
-        )
-        expect(component).toMatchSnapshot()
-    })
+            />,
+        );
+        expect(component).toMatchSnapshot();
+    });
     it('renders correct anticlockwise small', () => {
         const component = shallow(
             <Range
@@ -53,10 +53,10 @@ describe('Arc', () => {
                 color="lime"
                 value={0}
                 size={10}
-            />
-        )
-        expect(component).toMatchSnapshot()
-    })
+            />,
+        );
+        expect(component).toMatchSnapshot();
+    });
     it('renders correct anticlockwise large', () => {
         const component = shallow(
             <Range
@@ -71,8 +71,8 @@ describe('Arc', () => {
                 color="lime"
                 value={0}
                 size={10}
-            />
-        )
-        expect(component).toMatchSnapshot()
-    })
-})
+            />,
+        );
+        expect(component).toMatchSnapshot();
+    });
+});

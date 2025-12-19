@@ -1,6 +1,6 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import { Arc } from '../src/Arc'
+import React from 'react';
+import { shallow } from 'enzyme';
+import { Arc } from '../src/Arc';
 
 describe('Arc', () => {
     it('renders correct with background color is given', () => {
@@ -16,10 +16,10 @@ describe('Arc', () => {
                 background="red"
                 value={0}
                 size={10}
-            />
-        )
-        expect(component).toMatchSnapshot()
-    })
+            />,
+        );
+        expect(component).toMatchSnapshot();
+    });
     it('renders correct without background color is given', () => {
         const component = shallow(
             <Arc
@@ -33,8 +33,8 @@ describe('Arc', () => {
                 background="red"
                 value={0}
                 size={10}
-            />
-        )
-        expect(component).toMatchSnapshot()
-    })
-})
+            />,
+        );
+        expect(component).toMatchSnapshot();
+    });
+});
