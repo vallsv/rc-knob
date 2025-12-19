@@ -14,65 +14,63 @@ interface RenderProps {
     activeClassName: string;
 }
 
-const renderCircle =
-    ({
-        tickWidth,
-        translateX,
-        translateY,
-        angleOffset,
-        stepSize,
-        center,
-        color,
-        active,
-        activeColor,
-        activeClassName,
-        className,
-    }: RenderProps & { tickWidth: number }) =>
-    (_: any, i: number) =>
-        (
-            <circle
-                r={tickWidth}
-                key={i}
-                className={i === active ? activeClassName : className}
-                fill={i === active ? activeColor : color}
-                stroke="none"
-                transform={`
+function renderCircle({
+    tickWidth,
+    translateX,
+    translateY,
+    angleOffset,
+    stepSize,
+    center,
+    color,
+    active,
+    activeColor,
+    activeClassName,
+    className,
+}: RenderProps & { tickWidth: number }) {
+    return (_: unknown, i: number) => (
+        <circle
+            r={tickWidth}
+            key={i}
+            className={i === active ? activeClassName : className}
+            fill={i === active ? activeColor : color}
+            stroke="none"
+            transform={`
         rotate(${angleOffset + stepSize * i} ${center} ${center}) 
         translate(${translateX} ${translateY})
         `}
-            />
-        );
+        />
+    );
+}
 
-const renderRect =
-    ({
-        tickWidth,
-        tickHeight,
-        translateX,
-        translateY,
-        angleOffset,
-        stepSize,
-        center,
-        color,
-        active,
-        activeColor,
-        activeClassName,
-        className,
-    }: RenderProps & { tickWidth: number; tickHeight: number }) =>
-    (_: any, i: number) =>
-        (
-            <rect
-                className={i === active ? activeClassName : className}
-                fill={i === active ? activeColor : color}
-                stroke="none"
-                width={tickWidth}
-                height={tickHeight}
-                key={i}
-                transform={`
+function renderRect({
+    tickWidth,
+    tickHeight,
+    translateX,
+    translateY,
+    angleOffset,
+    stepSize,
+    center,
+    color,
+    active,
+    activeColor,
+    activeClassName,
+    className,
+}: RenderProps & { tickWidth: number; tickHeight: number }) {
+    return (_: unknown, i: number) => (
+        <rect
+            className={i === active ? activeClassName : className}
+            fill={i === active ? activeColor : color}
+            stroke="none"
+            width={tickWidth}
+            height={tickHeight}
+            key={i}
+            transform={`
         rotate(${angleOffset + stepSize * i} ${center} ${center}) 
         translate(${translateX} ${translateY})
         `}
-            />
-        );
+        />
+    );
+}
 
 export interface RenderCustomProps extends RenderProps {
     i: number;
@@ -82,19 +80,18 @@ export interface RenderCustomProps extends RenderProps {
     percentage: number;
 }
 
-const renderCustom =
-    ({
-        fn,
-        ...props
-    }: {
-        fn: (props: RenderCustomProps) => void;
-        tickWidth: number;
-        tickHeight: number;
-        steps: number;
-        percentage: number;
-    } & RenderProps) =>
-    (_: any, i: number) =>
-        fn({ ...props, i });
+function renderCustom({
+    fn,
+    ...props
+}: {
+    fn: (props: RenderCustomProps) => void;
+    tickWidth: number;
+    tickHeight: number;
+    steps: number;
+    percentage: number;
+} & RenderProps) {
+    return (_: unknown, i: number) => fn({ ...props, i });
+}
 
 interface Props {
     angleRange: number;

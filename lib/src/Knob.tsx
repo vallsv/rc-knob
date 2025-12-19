@@ -9,14 +9,18 @@ import { Spiral } from './Spiral';
 import { Label } from './Label';
 import type { InteractiveHook } from 'types';
 
-const isInternalComponent = ({ type }: { type: any }) =>
-    type === Arc ||
-    type === Pointer ||
-    type === Scale ||
-    type === Value ||
-    type === Range ||
-    type === Spiral ||
-    type === Label;
+function isInternalComponent(props: { type: unknown }) {
+    const { type } = props;
+    return (
+        type === Arc ||
+        type === Pointer ||
+        type === Scale ||
+        type === Value ||
+        type === Range ||
+        type === Spiral ||
+        type === Label
+    );
+}
 
 interface Props {
     min: number;
