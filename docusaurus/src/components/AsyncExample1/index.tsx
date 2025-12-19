@@ -105,9 +105,6 @@ export default function Example() {
             <MotorKnob
                 size={120}
                 target={target}
-                origin="up"
-                min={-9999}
-                max={9999}
                 value={position}
                 onChange={onKnobChange}
             />
