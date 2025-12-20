@@ -4,33 +4,23 @@ interface Position {
     percentage: number;
 }
 
-export const clamp = (min: number, max: number, value: number) =>
-    Math.max(min, Math.min(max, value));
+export function clamp(min: number, max: number, value: number) {
+    return Math.max(min, Math.min(max, value));
+}
 
-export const calculatePercentageFromMouseAngle = ({
-    mouseAngle,
-    angleOffset,
-    angleRange,
-}: {
+export function calculatePercentageFromMouseAngle(props: {
     mouseAngle: number;
     angleOffset: number;
     angleRange: number;
-}) => {
+}) {
+    const { mouseAngle, angleOffset, angleRange } = props;
     const rangle =
         ((mouseAngle - (angleOffset + angleRange * 0.5) + 900) % 360) - 180;
     const percentage = 0.5 + rangle / angleRange;
     return clamp(0, 1, percentage);
-};
+}
 
-export const calculatePositionFromMouseAngle = ({
-    mouseAngle,
-    multiRotation,
-    angleOffset,
-    angleRange,
-    percentage,
-    previousPercentage,
-    previousMouseAngle,
-}: {
+export function calculatePositionFromMouseAngle(props: {
     mouseAngle: number;
     multiRotation?: boolean;
     angleOffset: number;
@@ -38,8 +28,16 @@ export const calculatePositionFromMouseAngle = ({
     percentage: number;
     previousPercentage: number | null;
     previousMouseAngle: number | null;
-}): Position => {
-    const mouseAngle2 = mouseAngle as number;
+}): Position {
+    const {
+        mouseAngle,
+        multiRotation,
+        angleOffset,
+        angleRange,
+        percentage,
+        previousPercentage,
+        previousMouseAngle,
+    } = props;
     if (previousMouseAngle !== null) {
         // normalize and cancel the interaction if the delta angle is too big
         const deltaAngle = (mouseAngle - previousMouseAngle) % 360;
@@ -106,13 +104,13 @@ export const calculatePositionFromMouseAngle = ({
             };
         }
     }
-};
+}
 
-export const snapPosition = (
+export function snapPosition(
     position: Position,
     state: { angleOffset: number; angleRange: number },
     steps?: number,
-): Position => {
+): Position {
     if (!position.updated || !steps) {
         return position;
     }
@@ -124,33 +122,31 @@ export const snapPosition = (
         percentage,
         mouseAngle: mouseAngle < 0 ? mouseAngle + 360 : mouseAngle,
     };
-};
+}
 
-export const snapPercentage = (percentage: number, nbIntervals: number) => {
+export function snapPercentage(percentage: number, nbIntervals: number) {
     if (percentage === 0) return 0;
     const sign = Math.sign(percentage);
     const p = Math.abs(percentage);
     const stepSize = 1 / nbIntervals;
     const extra = (p + stepSize * 0.5) % stepSize;
     return sign * (p - stepSize * 0.5) + sign * (stepSize - extra);
-};
+}
 
-export const getValueFromPercentage = ({
-    min,
-    max,
-    percentage,
-}: {
+export function getValueFromPercentage(props: {
     min: number;
     max: number;
     percentage: number;
-}) => min + (max - min) * percentage;
+}) {
+    const { min, max, percentage } = props;
+    return min + (max - min) * percentage;
+}
 
-export const getPercentageFromValue = ({
-    min,
-    max,
-    value,
-}: {
+export function getPercentageFromValue(props: {
     min: number;
     max: number;
     value: number;
-}) => (value - min) / (max - min);
+}) {
+    const { min, max, value } = props;
+    return (value - min) / (max - min);
+}

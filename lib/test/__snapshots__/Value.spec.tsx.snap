@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Value > renders correct with a given value 1`] = `
+<text
+  class="someClassName"
+  style="user-select: none;"
+  text-anchor="middle"
+  x="50%"
+  y="50"
+>
+  10
+</text>
+`;
+
+exports[`Value > renders correct with a negative 0 1`] = `
+<text
+  class="someClassName"
+  style="user-select: none;"
+  text-anchor="middle"
+  x="50%"
+  y="50"
+>
+  0.00
+</text>
+`;

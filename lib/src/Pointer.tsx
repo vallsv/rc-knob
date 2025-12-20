@@ -1,5 +1,7 @@
 import React, { isValidElement } from 'react';
-import type { PropsWithKnobState } from './types';
+import { assertKnobState, type PropsWithKnobState } from './types';
+
+type SupportedTypes = 'rect' | 'circle' | 'triangle';
 
 const PointerShape = ({
     type,
@@ -8,11 +10,11 @@ const PointerShape = ({
     color,
     className,
 }: {
-    type: string;
+    type: SupportedTypes;
     width: number;
     height: number;
     color: string;
-    className: string;
+    className?: string;
 }) => {
     switch (type) {
         case 'rect':
@@ -37,28 +39,32 @@ const PointerShape = ({
 };
 
 interface Props {
-    width: number;
+    width?: number;
     height?: number;
     useRotation?: boolean;
-    type?: string;
-    color: string;
-    className: string;
+    type?: SupportedTypes;
+    color?: string;
+    className?: string;
 }
 
-export const Pointer = ({
-    children,
-    width,
-    height = width,
-    angleOffset,
-    angleRange,
-    percentage,
-    useRotation = true,
-    radius,
-    center,
-    type,
-    color,
-    className,
-}: React.PropsWithChildren<PropsWithKnobState<Props>>) => {
+export function Pointer(
+    props: React.PropsWithChildren<PropsWithKnobState<Props>>,
+) {
+    assertKnobState(props);
+    const {
+        children,
+        width,
+        height = width,
+        angleOffset,
+        angleRange,
+        percentage,
+        useRotation = true,
+        radius,
+        center,
+        type,
+        color = 'black',
+        className,
+    } = props;
     if (percentage === null) {
         return <></>;
     }
@@ -67,7 +73,7 @@ export const Pointer = ({
         transform = `rotate(${
             angleOffset + angleRange * percentage
         } ${center} ${center})
-					translate( ${center} ${center - radius - height})`;
+					translate( ${center} ${center - radius - (height ?? 0)})`;
     } else {
         const angle =
             ((angleOffset + angleRange * percentage - 90) * Math.PI) / 180;
@@ -92,12 +98,12 @@ export const Pointer = ({
             {type && (
                 <PointerShape
                     type={type}
-                    width={width}
-                    height={height}
+                    width={width ?? 1}
+                    height={height ?? 1}
                     color={color}
                     className={className}
                 />
             )}
         </g>
     );
-};
+}

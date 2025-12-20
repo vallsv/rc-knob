@@ -1,4 +1,4 @@
-import React, { isValidElement, KeyboardEventHandler } from 'react';
+import React, { isValidElement } from 'react';
 import useUpdate from './useUpdate';
 import { Arc } from './Arc';
 import { Pointer } from './Pointer';
@@ -9,14 +9,18 @@ import { Spiral } from './Spiral';
 import { Label } from './Label';
 import type { InteractiveHook } from 'types';
 
-const isInternalComponent = ({ type }: { type: any }) =>
-    type === Arc ||
-    type === Pointer ||
-    type === Scale ||
-    type === Value ||
-    type === Range ||
-    type === Spiral ||
-    type === Label;
+function isInternalComponent(props: { type: unknown }) {
+    const { type } = props;
+    return (
+        type === Arc ||
+        type === Pointer ||
+        type === Scale ||
+        type === Value ||
+        type === Range ||
+        type === Spiral ||
+        type === Label
+    );
+}
 
 interface Props {
     min: number;
@@ -87,12 +91,11 @@ export const Knob = ({
     return (
         <div
             ref={container}
-            // @ts-expect-error
-            tabIndex="0"
+            tabIndex={0}
             style={{ outline: 'none', width: size, height: size }}
             aria-valuemax={max}
             aria-valuemin={min}
-            aria-valuenow={value}
+            aria-valuenow={value ?? undefined}
             aria-valuetext={ariaValueText}
             aria-labelledby={ariaLabelledBy}
             onKeyDown={readOnly ? undefined : onKeyDown}

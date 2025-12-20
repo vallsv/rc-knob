@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PropsWithKnobState } from './types';
+import { assertKnobState, type PropsWithKnobState } from './types';
 
 interface Props {
     decimalPlace?: number;
@@ -7,13 +7,15 @@ interface Props {
     marginBottom?: number;
 }
 
-export const Value = ({
-    value,
-    size,
-    decimalPlace = 0,
-    className,
-    marginBottom = 0,
-}: PropsWithKnobState<Props>) => {
+export function Value(props: PropsWithKnobState<Props>) {
+    assertKnobState(props);
+    const {
+        value,
+        size,
+        decimalPlace = 0,
+        className,
+        marginBottom = 0,
+    } = props;
     if (value === null || value === undefined) {
         return <></>;
     }
@@ -33,4 +35,4 @@ export const Value = ({
             {label}
         </text>
     );
-};
+}

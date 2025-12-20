@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useRef } from 'react';
+import { useReducer, useEffect, useRef, RefObject } from 'react';
 import {
     calculatePositionFromMouseAngle,
     getValueFromPercentage,
@@ -7,7 +7,7 @@ import {
     snapPosition,
 } from './utils';
 import { onKeyDown, handleEventListener } from './eventHandling';
-import type { Action, Callbacks } from 'types';
+import type { Action, Callbacks } from './types';
 
 interface InternalState {
     min: number;
@@ -25,8 +25,8 @@ interface InternalState {
     multiRotation: boolean;
     size: number;
     steps?: number;
-    svg: any;
-    container: any;
+    svg: RefObject<SVGSVGElement>;
+    container: RefObject<HTMLDivElement>;
 }
 
 interface KnobConfiguration extends Callbacks {

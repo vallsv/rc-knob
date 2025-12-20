@@ -1,5 +1,5 @@
 import React from 'react';
-import type { KnobState, PropsWithKnobState } from './types';
+import { assertKnobState, type PropsWithKnobState } from './types';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => ({
     x: center + radius * Math.cos(angle),
@@ -59,13 +59,14 @@ interface Props {
     outerRadius?: number;
 }
 
-export const Range = ({
-    color,
-    percentage,
-    percentageFrom = null,
-    percentageTo = null,
-    ...props
-}: PropsWithKnobState<Props>) => {
+export function Range(props: PropsWithKnobState<Props>) {
+    assertKnobState(props);
+    const {
+        color,
+        percentage,
+        percentageFrom = null,
+        percentageTo = null,
+    } = props;
     let pfrom: number | null;
     let pto: number | null;
     if (percentageFrom !== null && percentageTo !== null) {
@@ -84,10 +85,14 @@ export const Range = ({
     if (pfrom === null || pto === null) {
         return <></>;
     }
-    const d = calcPath({ ...props, percentageFrom: pfrom, percentageTo: pto });
+    const d = calcPath({
+        ...props,
+        percentageFrom: pfrom,
+        percentageTo: pto,
+    });
     return (
         <g>
             <path d={d} style={{ fill: color }} />
         </g>
     );
-};
+}
