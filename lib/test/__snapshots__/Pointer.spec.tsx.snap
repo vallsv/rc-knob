@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Pointer > renders correct with a child as pointer 1`] = `
+<g
+  transform="rotate(4720 10 10)
+					translate( 10 -45)"
+>
+  <circle
+    r="5"
+  />
+</g>
+`;
+
+exports[`Pointer > renders correct with type circle 1`] = `
+<g
+  transform="rotate(4720 10 10)
+					translate( 10 -45)"
+>
+  <circle
+    class="someClassName"
+    fill="red"
+    r="5"
+  />
+</g>
+`;
+
+exports[`Pointer > renders correct with type rect 1`] = `
+<g
+  transform="rotate(4720 10 10)
+					translate( 10 -42)"
+>
+  <rect
+    class="someClassName"
+    fill="red"
+    height="2"
+    width="5"
+    x="-2.5"
+  />
+</g>
+`;
