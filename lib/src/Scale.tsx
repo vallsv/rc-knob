@@ -100,7 +100,7 @@ function renderCustom({
 interface Props {
     angleRange: number;
     steps: number;
-    type?: string;
+    type?: 'rect' | 'circle';
     radius: number;
     tickWidth: number;
     tickHeight: number;
