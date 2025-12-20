@@ -1,6 +1,8 @@
 import React, { isValidElement } from 'react';
 import { assertKnobState, type PropsWithKnobState } from './types';
 
+type SupportedTypes = 'rect' | 'circle' | 'triangle';
+
 const PointerShape = ({
     type,
     width,
@@ -8,7 +10,7 @@ const PointerShape = ({
     color,
     className,
 }: {
-    type: string;
+    type: SupportedTypes;
     width: number;
     height: number;
     color: string;
@@ -40,7 +42,7 @@ interface Props {
     width: number;
     height?: number;
     useRotation?: boolean;
-    type?: string;
+    type?: SupportedTypes;
     color: string;
     className: string;
 }
