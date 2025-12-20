@@ -7,7 +7,7 @@ import {
     snapPosition,
 } from './utils';
 import { onKeyDown, handleEventListener } from './eventHandling';
-import type { Action, Callbacks } from 'types';
+import type { Action, Callbacks } from './types';
 
 interface InternalState {
     min: number;
