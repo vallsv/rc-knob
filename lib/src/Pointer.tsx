@@ -1,5 +1,5 @@
 import React, { isValidElement } from 'react';
-import type { PropsWithKnobState } from './types';
+import { assertKnobState, type PropsWithKnobState } from './types';
 
 const PointerShape = ({
     type,
@@ -45,20 +45,24 @@ interface Props {
     className: string;
 }
 
-export const Pointer = ({
-    children,
-    width,
-    height = width,
-    angleOffset,
-    angleRange,
-    percentage,
-    useRotation = true,
-    radius,
-    center,
-    type,
-    color,
-    className,
-}: React.PropsWithChildren<PropsWithKnobState<Props>>) => {
+export function Pointer(
+    props: React.PropsWithChildren<PropsWithKnobState<Props>>,
+) {
+    assertKnobState(props);
+    const {
+        children,
+        width,
+        height = width,
+        angleOffset,
+        angleRange,
+        percentage,
+        useRotation = true,
+        radius,
+        center,
+        type,
+        color,
+        className,
+    } = props;
     if (percentage === null) {
         return <></>;
     }
@@ -100,4 +104,4 @@ export const Pointer = ({
             )}
         </g>
     );
-};
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PropsWithKnobState } from './types';
+import { assertKnobState, type PropsWithKnobState } from './types';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => ({
     x: center + radius * Math.cos(angle),
@@ -81,15 +81,17 @@ interface Props {
     arcWidth: number;
 }
 
-export const Spiral = ({
-    color,
-    percentage,
-    percentageFrom = null,
-    radiusFrom = null,
-    percentageTo = null,
-    radiusTo = null,
-    ...props
-}: PropsWithKnobState<Props>) => {
+export function Spiral(props: PropsWithKnobState<Props>) {
+    assertKnobState(props);
+    const {
+        color,
+        percentage,
+        percentageFrom = null,
+        radiusFrom = null,
+        percentageTo = null,
+        radiusTo = null,
+        ...others
+    } = props;
     let pfrom, pto;
     if (percentageFrom !== null && percentageTo !== null) {
         pfrom = percentageFrom;
@@ -115,11 +117,11 @@ export const Spiral = ({
         percentageTo: pto,
         outerRadiusFrom: radiusFrom,
         outerRadiusTo: radiusTo,
-        ...props,
+        ...others,
     });
     return (
         <g>
             <path d={d} style={{ fill: color }} />
         </g>
     );
-};
+}

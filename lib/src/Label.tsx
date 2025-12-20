@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PropsWithKnobState } from './types';
+import { assertKnobState, type PropsWithKnobState } from './types';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => {
     const rad = (angle * Math.PI) / 180;
@@ -18,17 +18,19 @@ interface Props {
     userSelect?: 'auto' | 'text' | 'none' | 'contain' | 'all';
 }
 
-export const Label = ({
-    label,
-    angleRange,
-    angleOffset,
-    percentage,
-    center,
-    radius = 0,
-    className,
-    style = {},
-    userSelect = 'none',
-}: PropsWithKnobState<Props>) => {
+export function Label(props: PropsWithKnobState<Props>) {
+    assertKnobState(props);
+    const {
+        label,
+        angleRange,
+        angleOffset,
+        percentage,
+        center,
+        radius = 0,
+        className,
+        style = {},
+        userSelect = 'none',
+    } = props;
     if (!label || percentage === null) {
         return <></>;
     }
@@ -49,4 +51,4 @@ export const Label = ({
             </text>
         </g>
     );
-};
+}

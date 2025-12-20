@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PropsWithKnobState } from './types';
+import { assertKnobState, type PropsWithKnobState } from './types';
 
 interface RenderProps {
     translateX: number;
@@ -111,22 +111,24 @@ interface Props {
     fn?: (props: RenderCustomProps) => void;
 }
 
-export const Scale = ({
-    angleRange,
-    steps,
-    type = 'rect',
-    radius,
-    tickWidth,
-    tickHeight,
-    angleOffset,
-    center,
-    color,
-    activeColor = color,
-    className,
-    activeClassName = className,
-    fn,
-    percentage,
-}: PropsWithKnobState<Props>) => {
+export function Scale(props: PropsWithKnobState<Props>) {
+    assertKnobState(props);
+    const {
+        angleRange,
+        steps,
+        type = 'rect',
+        radius,
+        tickWidth,
+        tickHeight,
+        angleOffset,
+        center,
+        color,
+        activeColor = color,
+        className,
+        activeClassName = className,
+        fn,
+        percentage,
+    } = props;
     const stepSize = angleRange / steps;
     const length = steps + (angleRange === 360 ? 0 : 1);
     const translateX = center - tickWidth / 2;
@@ -197,4 +199,4 @@ export const Scale = ({
 
     // @ts-expect-error
     return <g>{Array.from({ length }, renderFn)}</g>;
-};
+}
