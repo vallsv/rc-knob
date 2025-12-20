@@ -66,7 +66,6 @@ export function Range(props: PropsWithKnobState<Props>) {
         percentage,
         percentageFrom = null,
         percentageTo = null,
-        ...others
     } = props;
     let pfrom: number | null;
     let pto: number | null;
@@ -86,7 +85,11 @@ export function Range(props: PropsWithKnobState<Props>) {
     if (pfrom === null || pto === null) {
         return <></>;
     }
-    const d = calcPath({ ...others, percentageFrom: pfrom, percentageTo: pto });
+    const d = calcPath({
+        ...props,
+        percentageFrom: pfrom,
+        percentageTo: pto,
+    });
     return (
         <g>
             <path d={d} style={{ fill: color }} />

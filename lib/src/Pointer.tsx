@@ -14,7 +14,7 @@ const PointerShape = ({
     width: number;
     height: number;
     color: string;
-    className: string;
+    className?: string;
 }) => {
     switch (type) {
         case 'rect':
@@ -39,12 +39,12 @@ const PointerShape = ({
 };
 
 interface Props {
-    width: number;
+    width?: number;
     height?: number;
     useRotation?: boolean;
     type?: SupportedTypes;
-    color: string;
-    className: string;
+    color?: string;
+    className?: string;
 }
 
 export function Pointer(
@@ -62,7 +62,7 @@ export function Pointer(
         radius,
         center,
         type,
-        color,
+        color = 'black',
         className,
     } = props;
     if (percentage === null) {
@@ -73,7 +73,7 @@ export function Pointer(
         transform = `rotate(${
             angleOffset + angleRange * percentage
         } ${center} ${center})
-					translate( ${center} ${center - radius - height})`;
+					translate( ${center} ${center - radius - (height ?? 0)})`;
     } else {
         const angle =
             ((angleOffset + angleRange * percentage - 90) * Math.PI) / 180;
@@ -98,8 +98,8 @@ export function Pointer(
             {type && (
                 <PointerShape
                     type={type}
-                    width={width}
-                    height={height}
+                    width={width ?? 1}
+                    height={height ?? 1}
                     color={color}
                     className={className}
                 />

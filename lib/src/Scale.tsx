@@ -8,10 +8,10 @@ interface RenderProps {
     stepSize: number;
     center: number;
     color: string;
-    className: string;
+    className?: string;
     active: number;
     activeColor: string;
-    activeClassName: string;
+    activeClassName?: string;
 }
 
 function renderCircle({
@@ -98,15 +98,14 @@ function renderCustom({
 }
 
 interface Props {
-    angleRange: number;
-    steps: number;
+    steps?: number;
     type?: 'rect' | 'circle';
     radius: number;
     tickWidth: number;
     tickHeight: number;
-    color: string;
+    color?: string;
     activeColor?: string;
-    className: string;
+    className?: string;
     activeClassName?: string;
     fn?: (props: RenderCustomProps) => void;
 }
@@ -122,13 +121,16 @@ export function Scale(props: PropsWithKnobState<Props>) {
         tickHeight,
         angleOffset,
         center,
-        color,
+        color = 'black',
         activeColor = color,
         className,
         activeClassName = className,
         fn,
         percentage,
     } = props;
+    if (steps === undefined) {
+        return <></>;
+    }
     const stepSize = angleRange / steps;
     const length = steps + (angleRange === 360 ? 0 : 1);
     const translateX = center - tickWidth / 2;
@@ -140,6 +142,9 @@ export function Scale(props: PropsWithKnobState<Props>) {
     const active = Math.round((length - 1) * percentage);
 
     function getRenderFn() {
+        if (steps === undefined) {
+            return null;
+        }
         if (type === 'circle') {
             return renderCircle({
                 tickWidth,
