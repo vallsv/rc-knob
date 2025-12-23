@@ -1,0 +1,57 @@
+---
+title: Spiral
+description: Spiral component
+---
+
+The `Spiral` component displays a spiral between 2 angles.
+
+```jsx live
+<Knob size={100} angleOffset={220} angleRange={280} multiRotation>
+    <Spiral
+        arcWidth={5}
+        percentFrom={0}
+        color="#FC5A96"
+        radiusFrom={10}
+        radiusTo={30}
+    />
+</Knob>
+```
+
+## Properties
+
+<table>
+    <tr>
+        <th>Prop</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>`arcWidth`</td>
+        <td>Width of the spiral line. The spiral will expand to the centre.</td>
+    </tr>
+    <tr>
+        <td>`color`</td>
+        <td>Color of the spiral.</td>
+    </tr>
+    <tr>
+        <td>`percentFrom`</td>
+        <td>
+            Starting point of the spiral. If unset, `percent` value of the knob
+            is used.
+        </td>
+    </tr>
+    <tr>
+        <td>`percentTo`</td>
+        <td>
+            Ending point of the spiral. If unset, `percent` value of the knob is
+            used.
+        </td>
+    </tr>
+    <tr>
+        <td>`radiusFrom`</td>
+        <td>Outer radius of the start point of the spiral.</td>
+    </tr>
+    <tr>
+        <td>`radiusTo`</td>
+        <td>Outer radius of the ending point of the spiral.</td>
+    </tr>
+</table>

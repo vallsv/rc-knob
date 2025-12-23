@@ -7,6 +7,7 @@ import {
     Arc,
     Value,
     Scale,
+    Spiral,
 } from '@vallsv/rc-knob';
 
 // Add react-live imports you need here
@@ -20,6 +21,7 @@ const ReactLiveScope: unknown = {
     Arc,
     Value,
     Scale,
+    Spiral,
 };
 
 export default ReactLiveScope;

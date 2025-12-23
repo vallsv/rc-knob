@@ -5,10 +5,63 @@ description: Pointer component
 
 The `Pointer` component displays the location of the knob.
 
-Three shapes are available `circle`, `rect`, `triangle`.
+Can be either be a `rect`, `circle` or `triangle` depending on the
+passed `type` prop or any SVG element that is passed as a children.
 
 ```jsx live
 <Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
     <Pointer width={5} radius={40} type="circle" color="#FC5A96" />
 </Knob>
 ```
+
+## Properties
+
+<table>
+    <tr>
+        <th>Prop</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>`children`</td>
+        <td>
+            Can be any SVG element or a component that will render a SVG
+            element. If you pass a component the percentage of the current value
+            will be passed as a prop. The element will be rendered as pointer.
+            Note, that you have to pass `width` and `height` as props to make
+            calculate the correct position.
+        </td>
+    </tr>
+    <tr>
+        <td>`className`</td>
+        <td>Will be added to the predefined shape or the children.</td>
+    </tr>
+    <tr>
+        <td>`color`</td>
+        <td>Color of the pointer.</td>
+    </tr>
+    <tr>
+        <td>`height`</td>
+        <td>
+            Height of the `rect` or the custom element. Will be ignored for
+            circle. Will be the same as `width` if not set.
+        </td>
+    </tr>
+    <tr>
+        <td>`radius`</td>
+        <td>Outer radius of the circle the pointer sits on.</td>
+    </tr>
+    <tr>
+        <td>`type`</td>
+        <td>
+            Can be `rect`, `circle` or `triangle`. Will render the according SVG
+            element. `width` and/or `height` props needs to be set.
+        </td>
+    </tr>
+    <tr>
+        <td>`width`</td>
+        <td>
+            Width of the `rect` or the custom element. Radius when type is set
+            to `circle`.
+        </td>
+    </tr>
+</table>
