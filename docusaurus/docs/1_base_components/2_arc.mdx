@@ -1,0 +1,15 @@
+---
+title: Arc
+description: Arc component
+---
+
+The `Arc` component displays 2 angular zones.
+
+The foreground one is from the `min` to the knob location.
+The background one is from the knob location to `max`.
+
+```jsx live
+<Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
+    <Arc arcWidth={5} color="#FC5A96" background="#CCCCCC" />
+</Knob>
+```

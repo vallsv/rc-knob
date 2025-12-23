@@ -1,0 +1,30 @@
+---
+title: Range
+description: Range component
+---
+
+The `Range` component draw a range between two values
+using polar coordinates.
+
+```jsx live
+<Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
+    <Range
+        arcWidth={10}
+        color="#e44b02"
+        percentageFrom={0.0}
+        percentageTo={0.5}
+    />
+    <Range
+        arcWidth={10}
+        color="#ffc90e"
+        percentageFrom={0.5}
+        percentageTo={0.75}
+    />
+    <Range
+        arcWidth={10}
+        color="#6caa03"
+        percentageFrom={0.75}
+        percentageTo={1.0}
+    />
+</Knob>
+```

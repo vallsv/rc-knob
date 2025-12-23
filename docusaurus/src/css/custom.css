@@ -32,3 +32,9 @@
 .footer {
   display: none;
 }
+
+.my-value-style {
+  font-family: 'Eczar', serif;
+  fill: #fc5a96;
+  font-size: 40px;
+}
