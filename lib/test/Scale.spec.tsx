@@ -27,7 +27,7 @@ describe('Scale', () => {
         );
         expect(container.children[0].children[0]).toMatchSnapshot();
     });
-    it('renders correct no type is set to rect', () => {
+    it('renders correct type is set to rect', () => {
         const { container } = render(
             <svg>
                 <Scale
@@ -51,7 +51,7 @@ describe('Scale', () => {
         );
         expect(container.children[0].children[0]).toMatchSnapshot();
     });
-    it('renders correct no type is set to circle', () => {
+    it('renders correct type is set to circle', () => {
         const { container } = render(
             <svg>
                 <Scale
