@@ -31,6 +31,28 @@
         "react": ">=16.8.0",
         "react-dom": ">=16.8.0"
     },
+    "devDependencies": {
+        "@babel/core": "^7.14.8",
+        "@babel/plugin-transform-modules-commonjs": "^7.2.0",
+        "@babel/preset-env": "^7.2.0",
+        "@babel/preset-react": "^7.14.5",
+        "@types/react": "^18.0.28",
+        "@vitejs/plugin-react": "^5.1.2",
+        "babel-loader": "^8.2.2",
+        "babel-plugin-dynamic-import-node": "^2.2.0",
+        "codejs": "^0.5.0",
+        "css-loader": "^6.2.0",
+        "prettier": "^2.8.4",
+        "react": ">=16.8.0",
+        "react-dom": ">=16.8.0",
+        "style-loader": "^3.2.1",
+        "ts-loader": "^9.4.2",
+        "typescript": "^4.9.5",
+        "vite": "^7.3.0",
+        "vite-plugin-dts": "^4.5.4",
+        "webpack": "^5.46.0",
+        "webpack-cli": "^4.7.2"
+    },
     "prettier": {
         "trailingComma": "all",
         "tabWidth": 4,
