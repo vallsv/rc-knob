@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { Spiral } from '../src/Spiral';
 
 describe('Spiral', () => {
-    it('renders with less than 1 turn', () => {
+    it('renders with more than 1 turn', () => {
         const { container } = render(
             <svg>
                 <Spiral
@@ -26,7 +26,7 @@ describe('Spiral', () => {
         );
         expect(container.children[0].children[0]).toMatchSnapshot();
     });
-    it('renders with more than 1 turn', () => {
+    it('renders with less than 1 turn', () => {
         const { container } = render(
             <svg>
                 <Spiral
