@@ -1,5 +1,5 @@
-import React, { isValidElement } from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
+import React, { isValidElement, useMemo } from 'react';
+import { useKnobContext } from './context';
 
 type SupportedTypes = 'rect' | 'circle' | 'triangle';
 
@@ -45,23 +45,27 @@ interface Props {
     type?: SupportedTypes;
     color?: string;
     className?: string;
+    /**
+     * Override the `percentage` from the knob
+     */
+    percentage?: number | null;
+    /**
+     * Override the `radius` from the knob
+     */
+    radius?: number;
 }
 
-export function Pointer(
-    props: React.PropsWithChildren<PropsWithKnobState<Props>>,
-) {
-    assertKnobState(props);
+export function Pointer(props: React.PropsWithChildren<Props>) {
+    const state = useKnobContext('Pointer');
+    const { angleRange, angleOffset, center } = state;
     const {
         children,
         width,
         height = width,
-        angleOffset,
-        angleRange,
-        percentage,
         useRotation = true,
-        radius,
-        center,
         type,
+        percentage = state.percentage,
+        radius = state.radius,
         color = 'black',
         className,
     } = props;

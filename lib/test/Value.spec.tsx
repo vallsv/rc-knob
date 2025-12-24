@@ -1,59 +1,52 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { Value } from '../src/Value';
+import { Knob, Value } from '../src';
 
 describe('Value', () => {
     it('renders correct with a given value', () => {
         const { container } = render(
-            <svg>
-                <Value
-                    size={50}
-                    value={10.1212}
-                    className="someClassName"
-                    percentage={10}
-                    angleOffset={10}
-                    angleRange={10}
-                    radius={10}
-                    center={10}
-                />
-            </svg>,
+            <Knob
+                min={-1}
+                max={100}
+                value={10.1212}
+                size={100}
+                angleOffset={0}
+                angleRange={360}
+            >
+                <Value className="someClassName" />
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
     it('renders correct with a negative 0', () => {
         const { container } = render(
-            <svg>
-                <Value
-                    size={50}
-                    value={-0.001}
-                    decimalPlace={2}
-                    className="someClassName"
-                    percentage={10}
-                    angleOffset={10}
-                    angleRange={10}
-                    radius={10}
-                    center={10}
-                />
-            </svg>,
+            <Knob
+                min={-1}
+                max={100}
+                value={-0.001}
+                size={100}
+                angleOffset={0}
+                angleRange={360}
+            >
+                <Value decimalPlace={2} className="someClassName" />
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
     it('renders nothing correct without a given value', () => {
         const { container } = render(
-            <svg>
-                <Value
-                    size={50}
-                    className="someClassName"
-                    value={null}
-                    percentage={10}
-                    angleOffset={10}
-                    angleRange={10}
-                    radius={10}
-                    center={10}
-                />
-            </svg>,
+            <Knob
+                min={-1}
+                max={100}
+                value={null}
+                size={100}
+                angleOffset={0}
+                angleRange={360}
+            >
+                <Value className="someClassName" />
+            </Knob>,
         );
-        expect(container.children[0].innerHTML).toBe('');
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
 });

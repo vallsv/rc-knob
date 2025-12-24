@@ -1,5 +1,5 @@
-import React from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
+import { useKnobContext } from './context';
+import React, { useMemo } from 'react';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => ({
     x: center + radius * Math.cos(angle),
@@ -81,16 +81,16 @@ interface Props {
     arcWidth: number;
 }
 
-export function Spiral(props: PropsWithKnobState<Props>) {
-    assertKnobState(props);
+export function Spiral(props: Props) {
+    const state = useKnobContext('Spiral');
+    const { percentage, angleOffset, angleRange, center } = state;
     const {
         color,
-        percentage,
         percentageFrom = null,
         radiusFrom = null,
         percentageTo = null,
         radiusTo = null,
-        ...others
+        arcWidth,
     } = props;
     let pfrom, pto;
     if (percentageFrom !== null && percentageTo !== null) {
@@ -117,7 +117,10 @@ export function Spiral(props: PropsWithKnobState<Props>) {
         percentageTo: pto,
         outerRadiusFrom: radiusFrom,
         outerRadiusTo: radiusTo,
-        ...others,
+        angleOffset,
+        angleRange,
+        arcWidth,
+        center,
     });
     return (
         <g>

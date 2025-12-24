@@ -1,5 +1,5 @@
 import React from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
+import { useKnobContext } from './context';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => {
     const rad = (angle * Math.PI) / 180;
@@ -10,23 +10,25 @@ const pointOnCircle = (center: number, radius: number, angle: number) => {
 };
 
 interface Props {
+    percentage: number;
     label: string;
-    size: number;
-    decimalPlace: number;
-    className: string;
-    style: Record<string, unknown>;
+    size?: number;
+    className?: string;
+    style?: Record<string, unknown>;
     userSelect?: 'auto' | 'text' | 'none' | 'contain' | 'all';
+    /**
+     * Override the `radius` from the knob
+     */
+    radius?: number;
 }
 
-export function Label(props: PropsWithKnobState<Props>) {
-    assertKnobState(props);
+export function Label(props: Props) {
+    const state = useKnobContext('Label');
+    const { angleRange, angleOffset, center } = state;
     const {
         label,
-        angleRange,
-        angleOffset,
         percentage,
-        center,
-        radius = 0,
+        radius = state.radius,
         className,
         style = {},
         userSelect = 'none',

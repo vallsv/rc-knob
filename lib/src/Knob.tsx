@@ -1,31 +1,21 @@
-import React, { isValidElement, PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import useUpdate from './useUpdate';
-import { Arc } from './Arc';
-import { Pointer } from './Pointer';
-import { Scale } from './Scale';
-import { Value } from './Value';
-import { Range } from './Range';
-import { Spiral } from './Spiral';
-import { Label } from './Label';
-import type { InteractiveHook } from 'types';
-
-function isInternalComponent(props: { type: unknown }) {
-    const { type } = props;
-    return (
-        type === Arc ||
-        type === Pointer ||
-        type === Scale ||
-        type === Value ||
-        type === Range ||
-        type === Spiral ||
-        type === Label
-    );
-}
+import type { InteractiveHook, KnobState } from 'types';
+import { KnobContext } from './context';
 
 interface Props {
     min: number;
     max: number;
+    /**
+     * Initial value of the knob.
+     *
+     * If `undefined`, the value is set to `min`.
+     *
+     * If `null` the value is unknown and will not
+     * be displayed.
+     */
     initialValue?: number | null;
+    /** Actually an alias to `initialValue` */
     value?: number | null;
     multiRotation?: boolean;
     angleOffset?: number;
@@ -50,8 +40,8 @@ export function Knob(props: PropsWithChildren<Props>) {
     const {
         min,
         max,
-        value: initialValue,
         multiRotation = false,
+        value: initialValue = min ?? 0,
         angleOffset = 0,
         angleRange = 360,
         size,
@@ -75,7 +65,7 @@ export function Knob(props: PropsWithChildren<Props>) {
         min,
         max,
         multiRotation,
-        initialValue: initialValue ?? null,
+        initialValue,
         angleOffset,
         angleRange,
         size,
@@ -89,6 +79,41 @@ export function Knob(props: PropsWithChildren<Props>) {
         onStart,
         onEnd,
     });
+    const radius = size / 2;
+    const center = size / 2;
+
+    const [knobState, setKnobState] = useState<KnobState>({
+        value,
+        percentage,
+        size,
+        angleOffset,
+        angleRange,
+        radius,
+        center,
+        steps,
+    });
+
+    useEffect(() => {
+        setKnobState({
+            value,
+            percentage,
+            size,
+            angleOffset,
+            angleRange,
+            radius,
+            center,
+            steps,
+        });
+    }, [
+        value,
+        percentage,
+        size,
+        angleOffset,
+        angleRange,
+        radius,
+        center,
+        steps,
+    ]);
 
     return (
         <div
@@ -103,26 +128,11 @@ export function Knob(props: PropsWithChildren<Props>) {
             onKeyDown={readOnly ? undefined : onKeyDown}
             className={className}
         >
-            <svg width={size} height={size} ref={svg}>
-                {React.Children.map(children, (child) => {
-                    if (!isValidElement(child)) {
-                        return child;
-                    }
-                    return isInternalComponent(child)
-                        ? React.cloneElement(child, {
-                              percentage,
-                              size,
-                              value,
-                              angleOffset,
-                              angleRange,
-                              radius: size / 2,
-                              center: size / 2,
-                              steps,
-                              ...child.props,
-                          })
-                        : child;
-                })}
-            </svg>
+            <KnobContext.Provider value={knobState}>
+                <svg width={size} height={size} ref={svg}>
+                    {children}
+                </svg>
+            </KnobContext.Provider>
         </div>
     );
 }
