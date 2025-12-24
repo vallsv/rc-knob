@@ -1,0 +1,65 @@
+---
+title: Range
+description: Range component
+---
+
+The `Range` component draw a range between two values
+using polar coordinates.
+
+```jsx live
+<Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
+    <Range
+        arcWidth={10}
+        color="#e44b02"
+        percentageFrom={0.0}
+        percentageTo={0.5}
+    />
+    <Range
+        arcWidth={10}
+        color="#ffc90e"
+        percentageFrom={0.5}
+        percentageTo={0.75}
+    />
+    <Range
+        arcWidth={10}
+        color="#6caa03"
+        percentageFrom={0.75}
+        percentageTo={1.0}
+    />
+</Knob>
+```
+
+## Properties
+
+<table>
+    <tr>
+        <th>Prop</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>`arcWidth`</td>
+        <td>Width of the arc. The arc will expand to the centre.</td>
+    </tr>
+    <tr>
+        <td>`color`</td>
+        <td>Color of the range.</td>
+    </tr>
+    <tr>
+        <td>`percentFrom`</td>
+        <td>
+            Starting point of the range. If unset, `percent` value of the knob
+            is used.
+        </td>
+    </tr>
+    <tr>
+        <td>`percentTo`</td>
+        <td>
+            Ending point of the range. If unset, `percent` value of the knob is
+            used.
+        </td>
+    </tr>
+    <tr>
+        <td>`radius`</td>
+        <td>Outer radius of the arc. Will be the knob `size` by default.</td>
+    </tr>
+</table>

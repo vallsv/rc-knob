@@ -1,0 +1,132 @@
+---
+title: Scale
+description: Scale component
+---
+
+The `Scale` component draw graduation.
+
+The number of ticks is set by the `steps` prop of the parent `Knob` component.
+
+The single scale tick can be a SVG `rect` or `circle`. Additionally a render
+function can be passed as a prop, that will render each tick.
+
+This is useful if the scale ticks should have different colors, or different
+tick length for every 10th tick for example.
+
+```jsx live
+<Knob
+    size={200}
+    angleOffset={220}
+    angleRange={280}
+    min={0}
+    max={100}
+    steps={10} // amount of intervals
+>
+    <Scale
+        tickWidth={5}
+        tickHeight={10}
+        radius={45}
+        color="#FC5A96"
+        activeColor="#180094"
+    />
+</Knob>
+```
+
+# Properties
+
+<table>
+    <tr>
+        <th>Prop</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>`type`</td>
+        <td>
+            Can be `rect` or `circle`, default is `rect`. Will render the
+            according SVG element. `tickWidth` and/or `tickHeight` props needs
+            to be set.
+        </td>
+    </tr>
+    <tr>
+        <td>`radius`</td>
+        <td>Outer radius where the ticks ends.</td>
+    </tr>
+    <tr>
+        <td>`tickWidth`</td>
+        <td>Width of a single tick. Used as radius if type is `circle`.</td>
+    </tr>
+    <tr>
+        <td>`tickHeight`</td>
+        <td>Height of a single tick. Is ignored when type is `circle`.</td>
+    </tr>
+    <tr>
+        <td>`color`</td>
+        <td>
+            Will be passed as color prop to the render SVG element of a tick or
+            to the custom render function.
+        </td>
+    </tr>
+    <tr>
+        <td>`activeColor`</td>
+        <td>
+            Color for the tick that indicates the same value as the current knob
+            value.
+        </td>
+    </tr>
+    <tr>
+        <td>`className`</td>
+        <td>
+            Will be passed as prop to the render SVG element of a tick or to the
+            custom render function.
+        </td>
+    </tr>
+    <tr>
+        <td>`activeClassName`</td>
+        <td>
+            `className` for the tick that indicates the same value as the
+            current knob value.
+        </td>
+    </tr>
+    <tr>
+        <td>`fn`</td>
+        <td>
+            Function that can be used to have the full control over how a tick
+            is rendered. The function needs to return a SVG element. [See
+            details bellow](#custom-function).
+        </td>
+    </tr>
+</table>
+
+## Custom function
+
+The property `fn` can be used to have the full control over how a tick is rendered.
+
+The function needs to return a SVG element.
+
+The function will get the following props passed:
+
+-   `active`
+-   `activeClassName`
+-   `activeColor`
+-   `angleOffset`
+-   `center`
+-   `className`
+-   `color`
+-   `stepSize`
+-   `tickHeight`
+-   `translateX`
+-   `translateY`
+-   `tickWidth`
+-   `percentage`
+-   `steps`
+
+Most of them are just passed down from the `Pointer` or the `Knob`.
+
+Additional are:
+
+-   `center`, the half of the [`size`](#size) of the [`Knob`](#Knob)
+-   `stepSize`, the size of the angle of one step in degree
+-   `translateX`, `translateY` that are needed to put the tick on the correct
+    position using the transform prop e.g:
+    `` transform={`translate(${translateX} ${translateY})`} ``
+-   `i` which is the index of the current tick.
