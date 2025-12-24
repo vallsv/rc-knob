@@ -1,5 +1,5 @@
 import React from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
+import { useKnobContext } from './context';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => ({
     x: center + radius * Math.cos(angle),
@@ -55,17 +55,23 @@ interface Props {
     arcWidth: number;
     percentageFrom: number | null;
     percentageTo: number | null;
-    radius?: number;
     outerRadius?: number;
+    /**
+     * Override the `radius` from the knob
+     */
+    radius?: number;
 }
 
-export function Range(props: PropsWithKnobState<Props>) {
-    assertKnobState(props);
+export function Range(props: Props) {
+    const state = useKnobContext('Range');
+    const { percentage } = state;
     const {
         color,
-        percentage,
         percentageFrom = null,
         percentageTo = null,
+        radius = state.radius,
+        outerRadius,
+        arcWidth,
     } = props;
     let pfrom: number | null;
     let pto: number | null;
@@ -86,7 +92,9 @@ export function Range(props: PropsWithKnobState<Props>) {
         return <></>;
     }
     const d = calcPath({
-        ...props,
+        arcWidth,
+        ...state,
+        radius: outerRadius ?? radius ?? state.radius,
         percentageFrom: pfrom,
         percentageTo: pto,
     });

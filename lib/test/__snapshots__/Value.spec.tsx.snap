@@ -6,7 +6,7 @@ exports[`Value > renders correct with a given value 1`] = `
   style="user-select: none;"
   text-anchor="middle"
   x="50%"
-  y="50"
+  y="100"
 >
   10
 </text>
@@ -18,8 +18,10 @@ exports[`Value > renders correct with a negative 0 1`] = `
   style="user-select: none;"
   text-anchor="middle"
   x="50%"
-  y="50"
+  y="100"
 >
   0.00
 </text>
 `;
+
+exports[`Value > renders nothing correct without a given value 1`] = `undefined`;

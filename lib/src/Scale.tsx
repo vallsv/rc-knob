@@ -1,5 +1,5 @@
 import React from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
+import { useKnobContext } from './context';
 
 interface RenderProps {
     translateX: number;
@@ -98,9 +98,7 @@ function renderCustom({
 }
 
 interface Props {
-    steps?: number;
     type?: 'rect' | 'circle';
-    radius: number;
     tickWidth: number;
     tickHeight: number;
     color?: string;
@@ -108,25 +106,30 @@ interface Props {
     className?: string;
     activeClassName?: string;
     fn?: (props: RenderCustomProps) => void;
+    /**
+     * Override the `radius` from the knob
+     */
+    radius?: number;
+    /**
+     * Override the `steps` from the knob
+     */
+    steps?: number;
 }
 
-export function Scale(props: PropsWithKnobState<Props>) {
-    assertKnobState(props);
+export function Scale(props: Props) {
+    const state = useKnobContext('Scale');
+    const { angleRange, angleOffset, percentage, center } = state;
     const {
-        angleRange,
-        steps,
+        steps = state.steps,
         type = 'rect',
-        radius,
+        radius = state.radius,
         tickWidth,
         tickHeight,
-        angleOffset,
-        center,
         color = 'black',
         activeColor = color,
         className,
         activeClassName = className,
         fn,
-        percentage,
     } = props;
     if (steps === undefined) {
         return <></>;

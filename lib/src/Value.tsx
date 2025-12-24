@@ -1,20 +1,24 @@
+import { useKnobContext } from './context';
 import React from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
 
 interface Props {
     decimalPlace?: number;
     className: string;
     marginBottom?: number;
+    /**
+     * Override the `value` from the knob
+     */
+    value?: number | null;
 }
 
-export function Value(props: PropsWithKnobState<Props>) {
-    assertKnobState(props);
+export function Value(props: Props) {
+    const state = useKnobContext('Value');
+    const { size } = state;
     const {
-        value,
-        size,
         decimalPlace = 0,
         className,
         marginBottom = 0,
+        value = state.value,
     } = props;
     if (value === null || value === undefined) {
         return <></>;
