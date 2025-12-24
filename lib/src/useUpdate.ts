@@ -33,7 +33,7 @@ interface KnobConfiguration extends Callbacks {
     min: number;
     max: number;
     multiRotation: boolean;
-    initialValue?: number | null;
+    initialValue: number | null;
     angleOffset: number;
     angleRange: number;
     size: number;
@@ -224,8 +224,9 @@ export default ({
         angleOffset,
         angleRange,
         mouseAngle: null,
-        percentage: initialValue ? (initialValue - min) / (max - min) : 0,
-        value: initialValue || 0,
+        percentage:
+            initialValue !== null ? (initialValue - min) / (max - min) : null,
+        value: initialValue ?? null,
         svg,
         tracking,
         container,

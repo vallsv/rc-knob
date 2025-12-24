@@ -73,7 +73,7 @@ export const Knob = ({
         min,
         max,
         multiRotation,
-        initialValue,
+        initialValue: initialValue ?? null,
         angleOffset,
         angleRange,
         size,
