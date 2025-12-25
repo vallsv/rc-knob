@@ -7,10 +7,10 @@ interface RenderProps {
     angleOffset: number;
     stepSize: number;
     center: number;
-    color: string;
+    color?: string;
     className?: string;
     active: number;
-    activeColor: string;
+    activeColor?: string;
     activeClassName?: string;
 }
 
@@ -125,7 +125,7 @@ export function Scale(props: Props) {
         radius = state.radius,
         tickWidth,
         tickHeight,
-        color = 'black',
+        color,
         activeColor = color,
         className,
         activeClassName = className,

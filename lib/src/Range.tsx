@@ -51,11 +51,12 @@ const calcPath = ({
 };
 
 interface Props {
-    color: string;
+    color?: string;
     arcWidth: number;
     percentageFrom: number | null;
     percentageTo: number | null;
     outerRadius?: number;
+    className?: string;
     /**
      * Override the `radius` from the knob
      */
@@ -72,6 +73,7 @@ export function Range(props: Props) {
         radius = state.radius,
         outerRadius,
         arcWidth,
+        className,
     } = props;
 
     const [pFrom, pTo] = useMemo(() => {
@@ -106,7 +108,7 @@ export function Range(props: Props) {
     }
     return (
         <g>
-            <path d={d} style={{ fill: color }} />
+            <path className={className} d={d} style={{ fill: color }} />
         </g>
     );
 }
