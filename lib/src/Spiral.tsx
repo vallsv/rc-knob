@@ -92,36 +92,52 @@ export function Spiral(props: Props) {
         radiusTo = null,
         arcWidth,
     } = props;
-    let pfrom, pto;
-    if (percentageFrom !== null && percentageTo !== null) {
-        pfrom = percentageFrom;
-        pto = percentageTo;
-    } else if (percentageFrom !== null) {
-        pfrom = percentageFrom;
-        pto = percentage;
-    } else if (percentageTo !== null) {
-        pfrom = percentage;
-        pto = percentageTo;
-    } else {
-        pfrom = 0;
-        pto = percentage;
-    }
-    if (radiusFrom === null || radiusTo === null) {
-        return <></>;
-    }
-    if (pfrom === null || pto === null) {
-        return <></>;
-    }
-    const d = calcPath({
-        percentageFrom: pfrom,
-        percentageTo: pto,
-        outerRadiusFrom: radiusFrom,
-        outerRadiusTo: radiusTo,
+
+    const [pFrom, pTo] = useMemo(() => {
+        if (percentageFrom !== null && percentageTo !== null) {
+            return [percentageFrom, percentageTo];
+        }
+        if (percentageFrom !== null) {
+            return [percentageFrom, percentage];
+        }
+        if (percentageTo !== null) {
+            return [percentage, percentageTo];
+        }
+        // We could argue it's a problem instead or returning a value content
+        return [0, percentage];
+    }, [percentage, percentageFrom, percentageTo]);
+
+    const d = useMemo(() => {
+        if (radiusFrom === null || radiusTo === null) {
+            return null;
+        }
+        if (pFrom === null || pTo === null) {
+            return null;
+        }
+        return calcPath({
+            percentageFrom: pFrom,
+            percentageTo: pTo,
+            outerRadiusFrom: radiusFrom,
+            outerRadiusTo: radiusTo,
+            angleOffset,
+            angleRange,
+            arcWidth,
+            center,
+        });
+    }, [
+        pFrom,
+        pTo,
+        radiusFrom,
+        radiusTo,
         angleOffset,
         angleRange,
         arcWidth,
         center,
-    });
+    ]);
+
+    if (d === null) {
+        return <></>;
+    }
     return (
         <g>
             <path d={d} style={{ fill: color }} />

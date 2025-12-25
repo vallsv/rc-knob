@@ -69,22 +69,29 @@ export function Pointer(props: React.PropsWithChildren<Props>) {
         color = 'black',
         className,
     } = props;
-    if (percentage === null) {
-        return <></>;
-    }
-    let transform;
-    if (useRotation) {
-        transform = `rotate(${
-            angleOffset + angleRange * percentage
-        } ${center} ${center})
+
+    const transform = useMemo(() => {
+        if (percentage === null) {
+            return null;
+        }
+        if (useRotation) {
+            return `rotate(${
+                angleOffset + angleRange * percentage
+            } ${center} ${center})
 					translate( ${center} ${center - radius - (height ?? 0)})`;
-    } else {
-        const angle =
-            ((angleOffset + angleRange * percentage - 90) * Math.PI) / 180;
-        const x = center + radius * Math.cos(angle);
-        const y = center + radius * Math.sin(angle);
-        transform = `translate(${x} ${y})`;
+        } else {
+            const angle =
+                ((angleOffset + angleRange * percentage - 90) * Math.PI) / 180;
+            const x = center + radius * Math.cos(angle);
+            const y = center + radius * Math.sin(angle);
+            return `translate(${x} ${y})`;
+        }
+    }, [percentage, angleOffset, angleRange, center, radius, height]);
+
+    if (transform === null) {
+        return '<></>';
     }
+
     return (
         <g transform={transform}>
             {children &&
