@@ -1,12 +1,16 @@
 import { useKnobContext } from './context';
 import React, { useMemo } from 'react';
 
-const pointOnCircle = (center: number, radius: number, angle: number) => ({
-    x: center + radius * Math.cos(angle),
-    y: center + radius * Math.sin(angle),
-});
+function pointOnCircle(center: number, radius: number, angle: number) {
+    return {
+        x: center + radius * Math.cos(angle),
+        y: center + radius * Math.sin(angle),
+    };
+}
 
-const degTorad = (deg: number) => (Math.PI * deg) / 180;
+function degTorad(deg: number) {
+    return (Math.PI * deg) / 180;
+}
 
 function ordered(v1: number, p1: number, v2: number, p2: number) {
     if (v1 <= v2) {
@@ -16,16 +20,7 @@ function ordered(v1: number, p1: number, v2: number, p2: number) {
     }
 }
 
-const calcPath = ({
-    percentageFrom,
-    percentageTo,
-    angleOffset,
-    angleRange,
-    arcWidth,
-    outerRadiusFrom,
-    outerRadiusTo,
-    center,
-}: {
+function calcPath(props: {
     percentageFrom: number;
     percentageTo: number;
     angleOffset: number;
@@ -34,7 +29,17 @@ const calcPath = ({
     outerRadiusFrom: number;
     outerRadiusTo: number;
     center: number;
-}) => {
+}) {
+    const {
+        percentageFrom,
+        percentageTo,
+        angleOffset,
+        angleRange,
+        arcWidth,
+        outerRadiusFrom,
+        outerRadiusTo,
+        center,
+    } = props;
     const [percentageMin, outerRadiusMin, percentageMax, outerRadiusMax] =
         ordered(percentageFrom, outerRadiusFrom, percentageTo, outerRadiusTo);
     const angle = angleRange * (percentageMax - percentageMin);
@@ -70,7 +75,7 @@ const calcPath = ({
         }
     }
     return `M ${start}A ${forth}L ${link}A ${back}z`;
-};
+}
 
 interface Props {
     color: string;
