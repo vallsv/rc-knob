@@ -1,4 +1,4 @@
-import React, { isValidElement } from 'react';
+import React, { isValidElement, PropsWithChildren } from 'react';
 import useUpdate from './useUpdate';
 import { Arc } from './Arc';
 import { Pointer } from './Pointer';
@@ -46,29 +46,31 @@ interface Props {
     className?: string;
 }
 
-export const Knob = ({
-    min,
-    max,
-    value: initialValue,
-    multiRotation = false,
-    angleOffset = 0,
-    angleRange = 360,
-    size,
-    onChange = () => {},
-    onInteractiveChange = () => {},
-    interactiveHook = undefined,
-    onStart = () => {},
-    onEnd = () => {},
-    children,
-    steps,
-    snap = false,
-    tracking = true,
-    readOnly = false,
-    useMouseWheel = true,
-    ariaValueText,
-    ariaLabelledBy,
-    className,
-}: React.PropsWithChildren<Props>) => {
+export function Knob(props: PropsWithChildren<Props>) {
+    const {
+        min,
+        max,
+        value: initialValue,
+        multiRotation = false,
+        angleOffset = 0,
+        angleRange = 360,
+        size,
+        onChange = () => {},
+        onInteractiveChange = () => {},
+        interactiveHook = undefined,
+        onStart = () => {},
+        onEnd = () => {},
+        children,
+        steps,
+        snap = false,
+        tracking = true,
+        readOnly = false,
+        useMouseWheel = true,
+        ariaValueText,
+        ariaLabelledBy,
+        className,
+    } = props;
+
     const { percentage, value, svg, container, onKeyDown } = useUpdate({
         min,
         max,
@@ -123,4 +125,4 @@ export const Knob = ({
             </svg>
         </div>
     );
-};
+}
