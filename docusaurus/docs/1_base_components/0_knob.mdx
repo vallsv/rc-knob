@@ -3,26 +3,28 @@ title: Knob
 description: Knob component
 ---
 
-import colors from '@site/src/helpers/colors';
-import { Knob, Pointer, Range, Label, Scale, Arc } from '@vallsv/rc-knob';
+The `Knob` component is the root component that handles all the user interactions.
 
-The `Knob` component is root component that handles all the user interactions.
-
-It does not render any visual UI elements but a `<div><svg></svg></div>`.
-
-All children will be added to the `<svg>` element.
+It does not render any visual UI elements but creates a root `<div><svg></svg></div>`.
+All children will be added inside this `<svg>` element.
 
 It handles the user interaction by mouse, mouse wheel and keyboard arrow keys.
+
 It is accessible by keyboard using `tab`.
+
+The main properties allow to setup the value and the global geometry of the
+knob.
 
 ```js static
 <Knob
-    size={100}
-    angleOffset={220}
-    angleRange={280}
+    // hold value
     value={33}
     min={0}
     max={100}
+    // geometry
+    size={100}
+    angleOffset={220}
+    angleRange={280}
 >
     ...
 </Knob>
@@ -30,75 +32,63 @@ It is accessible by keyboard using `tab`.
 
 ## Value
 
-The knob hold a numeric `value`. This value is constained between `min` and
-`max`.
+The knob hold a numeric `value`. It's an uncontrolled value constained
+between `min` and `max`.
+
+The `value` can also be set to `null`. In this case the knob will
+not show the location.
 
 ## Geometry
 
-The `size` is the diameter of the knob.
+The `size` is the diameter of the knob. The root `<div>` is setup
+with this information as `height` and `width`. The knob is defined
+by the incircle bounded by this square.
 
-`angleOffset` and `angleRange` are used to define the knob geometry.
+![Circle geometry](@site/static/img/geometry_1.svg)
 
-It is relative to the top of the knob, and clockwise.
+`angleOffset` and `angleRange` are used to define the location of
+the begin/end positions. It have to be defined in a radial coordinate,
+where the `0` is on the top of the knob, and clockwise.
 
-<Knob size={150} angleOffset={0} angleRange={360} min={0} max={100}>
-    <Pointer
-        percentage={0 / 360}
-        width={5}
-        height={30}
-        radius={0}
-        type="rect"
-        color={colors.primary}
-    />
-    <Label
-        percentage={0.0}
-        radius={50}
-        label="0 deg"
-        style={{ fontSize: '80%' }}
-    />
-    <Pointer
-        percentage={140 / 360}
-        width={5}
-        height={30}
-        radius={0}
-        type="rect"
-        color={colors.primary}
-    />
-    <Label
-        percentage={140 / 360}
-        radius={50}
-        label="140 deg"
-        style={{ fontSize: '80%' }}
-    />
-    <Pointer
-        percentage={220 / 360}
-        width={5}
-        height={30}
-        radius={0}
-        type="rect"
-        color={colors.primary}
-    />
-    <Label
-        percentage={220 / 360}
-        radius={50}
-        label="220 deg"
-        style={{ fontSize: '80%' }}
-    />
-    <Range
-        radius={30}
-        arcWidth={5}
-        color={colors.primary}
-        percentageFrom={0.0}
-        percentageTo={0.5}
-    />
-    <Range
-        radius={30}
-        arcWidth={5}
-        color={colors.primary}
-        percentageFrom={0.5}
-        percentageTo={1.0}
-    />
+![Circle geometry](@site/static/img/geometry_2.svg)
+
+`angleOffset` is the begin position (when the `value`
+is the minimal), and `angleRange` is the range of the interaction
+from the begin to the end.`angleOffset+angleRange` is the end
+position.
+
+![Circle geometry](@site/static/img/geometry_3.svg)
+
+```jsx live
+<Knob
+    size={100}
+    angleOffset={225}
+    angleRange={270}
+    value={33}
+    min={0}
+    max={100}
+>
+    <Arc arcWidth={5} color="#FC5A96" background="#CCCCCC" />
+    <Pointer width={5} height={40} radius={10} type="rect" color="#FC5A96" />
 </Knob>
+```
+
+With this geometry, `angleRange` can be negative. In this case the
+interaction became anti clockwise.
+
+```jsx live
+<Knob
+    size={100}
+    angleOffset={135}
+    angleRange={-270}
+    value={33}
+    min={0}
+    max={100}
+>
+    <Arc arcWidth={5} color="#FC5A96" background="#CCCCCC" />
+    <Pointer width={5} height={40} radius={10} type="rect" color="#FC5A96" />
+</Knob>
+```
 
 ## Properties
 
@@ -274,28 +264,6 @@ It is relative to the top of the knob, and clockwise.
     </tr>
 
 </table>
-
-## Anticlockwise
-
-If `angleRange` is negative, the interaction is anticlockwise.
-
-<Knob
-    size={100}
-    angleOffset={140}
-    angleRange={-280}
-    value={33}
-    min={0}
-    max={100}
->
-    <Arc arcWidth={5} color={colors.primary} background={colors.shadow} />
-    <Pointer
-        width={5}
-        height={40}
-        radius={10}
-        type="rect"
-        color={colors.primary}
-    />
-</Knob>
 
 ## interactiveHook
 
