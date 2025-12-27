@@ -46,8 +46,9 @@ function Example(props) {
     function CustomPointer({ width, height, percentage }) {
         return (
             <rect
+                x={-width * 0.5}
                 width={width}
-                height={5 + height * percentage}
+                height={5 + (height - 5) * percentage}
                 fill={`hsl(${Math.round(360 * percentage)}, 50%, 50%)`}
             />
         );
