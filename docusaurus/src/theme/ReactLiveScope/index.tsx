@@ -8,6 +8,7 @@ import {
     Value,
     Scale,
     Spiral,
+    useKnobContext,
 } from '@vallsv/rc-knob';
 
 // Add react-live imports you need here
@@ -22,6 +23,7 @@ const ReactLiveScope: unknown = {
     Value,
     Scale,
     Spiral,
+    useKnobContext,
 };
 
 export default ReactLiveScope;

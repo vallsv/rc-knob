@@ -3,6 +3,40 @@ title: Custom
 description: Create custom component elements
 ---
 
+### Custom component
+
+Create a custom `Knob` component with `useKnobContext`.
+
+```jsx live
+function Example(props) {
+    function GrowingCircle() {
+        const state = useKnobContext('MyComponent');
+        const p = state.percentage;
+        return (
+            <circle
+                cx={state.center}
+                cy={state.center}
+                r={state.size * 0.5 * state.percentage - 6}
+                style={{fill: `oklch(0.5 100% ${150 + Math.floor(p*100)})`}}
+            />
+        );
+    }
+
+    return (
+        <Knob
+            size={100}
+            angleOffset={220}
+            angleRange={280}
+            min={0}
+            max={100}
+        >
+            <GrowingCircle />
+            <Arc arcWidth={5} color="#FC5A96" />
+        </Knob>
+    );
+}
+```
+
 ### Custom pointer
 
 Create custom pointer by providing `CustomPointer` to the `Pointer` component.
