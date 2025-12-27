@@ -1,4 +1,5 @@
 export * from './Knob';
+export * from './context';
 export * from './Arc';
 export * from './Scale';
 export * from './Pointer';
