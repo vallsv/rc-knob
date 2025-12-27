@@ -57,8 +57,8 @@ export const customScaleTick = ({
         <rect
             fill={`hsl(${(240 + (40 - i) * 4) % 360},100%, 60%)`}
             stroke="none"
-            width={tickWidth}
-            height={i === active ? 9 : tickHeight}
+            width={i === active ? tickWidth * 3 : tickWidth}
+            height={i === active ? tickHeight * 3 : tickHeight}
             key={i}
             transform={`
         rotate(${angleOffset + stepSize * i} ${center} ${center}) 
