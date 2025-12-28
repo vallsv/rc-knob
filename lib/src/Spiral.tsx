@@ -84,6 +84,7 @@ interface Props {
     percentageTo?: number | null;
     radiusTo?: number | null;
     arcWidth: number;
+    className?: string;
 }
 
 export function Spiral(props: Props) {
@@ -96,6 +97,7 @@ export function Spiral(props: Props) {
         percentageTo = null,
         radiusTo = null,
         arcWidth,
+        className,
     } = props;
 
     const [pFrom, pTo] = useMemo(() => {
@@ -145,7 +147,7 @@ export function Spiral(props: Props) {
     }
     return (
         <g>
-            <path d={d} style={{ fill: color }} />
+            <path d={d} style={{ fill: color }} className={className} />
         </g>
     );
 }

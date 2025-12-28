@@ -1,0 +1,31 @@
+.myknob {
+  .value {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+  }
+}
+
+[data-theme='light'] .myknob {
+  .value {
+    fill: #fc5a96;
+  }
+  .arc {
+    fill: #fc5a96;
+  }
+  .pointer {
+    fill: #180094;
+  }
+}
+
+[data-theme='dark'] .myknob {
+  .value {
+    fill: #03a569;
+  }
+  .arc {
+    fill: #03a569;
+  }
+  .pointer {
+    fill: #e7ff6b;
+  }
+}

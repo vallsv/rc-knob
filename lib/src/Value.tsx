@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 
 interface Props {
     decimalPlace?: number;
-    className: string;
+    className?: string;
     marginBottom?: number;
     /**
      * Override the `value` from the knob

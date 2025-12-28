@@ -1,0 +1,35 @@
+.myknob {
+  .value {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+  }
+}
+
+[data-theme='light'] .myknob {
+  .grandient1 { stop-color: #b2b2b2; }
+  .grandient2 { stop-color: #d7d7d7; }
+  .grandient3 { stop-color: #b6b6b6; }
+  .grandient4 { stop-color: #e1e1e1; }
+  .grandient5 { stop-color: #e0e0e0; }
+  .grandient6 { stop-color: #a6a6a6; }
+  .grandient7 { stop-color: #c8c8c8; }
+  .grandient8 { stop-color: #b4b4b4; }
+  .ledon { fill: #48c7ff; }
+  .ledoff { fill: #e8e8e8; }
+  .background { stroke: #bdbdbd; }
+}
+
+[data-theme='dark'] .myknob {
+  .grandient1 { stop-color: #4d4d4d; }
+  .grandient2 { stop-color: #282828; }
+  .grandient3 { stop-color: #494949; }
+  .grandient4 { stop-color: #1e1e1e; }
+  .grandient5 { stop-color: #1f1f1f; }
+  .grandient6 { stop-color: #595959; }
+  .grandient7 { stop-color: #373737; }
+  .grandient8 { stop-color: #4b4b4b; }
+  .ledon { fill: #b73800; }
+  .ledoff { fill: #171717; }
+  .background { stroke: #424242; }
+}
