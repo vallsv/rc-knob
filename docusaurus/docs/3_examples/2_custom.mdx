@@ -3,84 +3,122 @@ title: Custom
 description: Create custom component elements
 ---
 
-import colors from '@site/src/helpers/colors';
-import {
-    Knob,
-    Pointer,
-    Range,
-    Label,
-    Scale,
-    Arc,
-    Value,
-} from '@vallsv/rc-knob';
+### Custom component
+
+Create a custom `Knob` component with `useKnobContext`.
+
+```jsx live
+function Example(props) {
+    function GrowingCircle() {
+        const state = useKnobContext('MyComponent');
+        const p = state.percentage;
+        return (
+            <circle
+                cx={state.center}
+                cy={state.center}
+                r={state.size * 0.5 * state.percentage - 6}
+                style={{fill: `oklch(0.5 100% ${150 + Math.floor(p*100)})`}}
+            />
+        );
+    }
+
+    return (
+        <Knob
+            size={100}
+            angleOffset={220}
+            angleRange={280}
+            min={0}
+            max={100}
+        >
+            <GrowingCircle />
+            <Arc arcWidth={5} color="#FC5A96" />
+        </Knob>
+    );
+}
+```
 
 ### Custom pointer
 
-export const CustomPointer = ({ width, height, percentage }) => {
-    return (
-        <rect
-            width={width}
-            height={5 + height * percentage}
-            fill={`hsl(${Math.round(360 * percentage)}, 50%, 50%)`}
-        />
-    );
-};
+Create custom pointer by providing `CustomPointer` to the `Pointer` component.
 
-<Knob
-    size={100}
-    angleOffset={220}
-    angleRange={280}
-    min={0}
-    max={100}
-    onChange={(value) => console.log(value)}
->
-    <Arc arcWidth={5} color={colors.primary} radius={47.5} />
-    <Pointer width={3} height={40} radius={0} color={colors.primary}>
-        <CustomPointer />
-    </Pointer>
-</Knob>
+```jsx live
+function Example(props) {
+    function CustomPointer({ width, height, percentage }) {
+        return (
+            <rect
+                x={-width * 0.5}
+                width={width}
+                height={5 + (height - 5) * percentage}
+                fill={`hsl(${Math.round(360 * percentage)}, 50%, 50%)`}
+            />
+        );
+    }
+
+    return (
+        <Knob
+            size={100}
+            angleOffset={220}
+            angleRange={280}
+            min={0}
+            max={100}
+        >
+            <Arc arcWidth={5} color="#FC5A96" radius={47.5} />
+            <Pointer width={3} height={40} radius={0} color="#FC5A96">
+                <CustomPointer />
+            </Pointer>
+        </Knob>
+    );
+}
+```
 
 ### Custom scale
 
-export const customScaleTick = ({
-    tickWidth,
-    tickHeight,
-    translateX,
-    translateY,
-    angleOffset,
-    stepSize,
-    center,
-    active,
-    i,
-}) => {
-    return (
-        <rect
-            fill={`hsl(${(240 + (40 - i) * 4) % 360},100%, 60%)`}
-            stroke="none"
-            width={tickWidth}
-            height={i === active ? 9 : tickHeight}
-            key={i}
-            transform={`
-        rotate(${angleOffset + stepSize * i} ${center} ${center}) 
-        translate( ${translateX} ${translateY})
-      `}
-        />
-    );
-};
+Create custom ticks by providing `customScaleTick` to the `Scale` component.
 
-<Knob
-    size={100}
-    angleOffset={220}
-    angleRange={280}
-    min={0}
-    max={100}
-    onChange={(value) => console.log(value)}
->
-    <Scale
-        steps={40}
-        tickWidth={1}
-        tickHeight={5}
-        radius={45}
-        fn={customScaleTick}
-    />
-</Knob>
+```jsx live
+function Example(props) {
+    function customScaleTick({
+        tickWidth,
+        tickHeight,
+        translateX,
+        translateY,
+        angleOffset,
+        stepSize,
+        center,
+        active,
+        i
+    }) {
+        return (
+            <rect
+                fill={`hsl(${(240 + (40 - i) * 4) % 360},100%, 60%)`}
+                stroke="none"
+                width={i === active ? tickWidth * 3 : tickWidth}
+                height={i === active ? tickHeight * 3 : tickHeight}
+                key={i}
+                transform={`
+            rotate(${angleOffset + stepSize * i} ${center} ${center})
+            translate( ${translateX} ${translateY})
+        `}
+            />
+        );
+    }
+
+    return (
+        <Knob
+            size={100}
+            angleOffset={220}
+            angleRange={280}
+            min={0}
+            max={100}
+        >
+            <Scale
+                steps={40}
+                tickWidth={1}
+                tickHeight={5}
+                radius={45}
+                fn={customScaleTick}
+            />
+        </Knob>
+    );
+}
+```

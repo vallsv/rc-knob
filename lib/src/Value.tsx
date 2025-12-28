@@ -1,28 +1,40 @@
-import React from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
+import { useKnobContext } from './context';
+import React, { useMemo } from 'react';
 
 interface Props {
     decimalPlace?: number;
     className: string;
     marginBottom?: number;
+    /**
+     * Override the `value` from the knob
+     */
+    value?: number | null;
 }
 
-export function Value(props: PropsWithKnobState<Props>) {
-    assertKnobState(props);
+export function Value(props: Props) {
+    const state = useKnobContext('Value');
+    const { size } = state;
     const {
-        value,
-        size,
         decimalPlace = 0,
         className,
         marginBottom = 0,
+        value = state.value,
     } = props;
-    if (value === null || value === undefined) {
+
+    const label = useMemo(() => {
+        if (value === null || value === undefined) {
+            return null;
+        }
+        let label = value.toFixed(decimalPlace);
+        // make sure no negative zero is displayed
+        if (label.startsWith('-') && Number.parseFloat(label) === 0) {
+            label = label.slice(1);
+        }
+        return label;
+    }, [value, decimalPlace]);
+
+    if (label === null) {
         return <></>;
-    }
-    let label = value.toFixed(decimalPlace);
-    // make sure no negative zero is displayed
-    if (label.startsWith('-') && Number.parseFloat(label) === 0) {
-        label = label.slice(1);
     }
     return (
         <text
@@ -30,7 +42,7 @@ export function Value(props: PropsWithKnobState<Props>) {
             x="50%"
             textAnchor="middle"
             className={className}
-            y={(size ?? 0) - marginBottom}
+            y={size - marginBottom}
         >
             {label}
         </text>

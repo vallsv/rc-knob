@@ -2,8 +2,8 @@
 
 exports[`Pointer > renders correct with a child as pointer 1`] = `
 <g
-  transform="rotate(4720 10 10)
-					translate( 10 -45)"
+  transform="rotate(265 50 50)
+					translate( 50 -5)"
 >
   <circle
     r="5"
@@ -13,8 +13,8 @@ exports[`Pointer > renders correct with a child as pointer 1`] = `
 
 exports[`Pointer > renders correct with type circle 1`] = `
 <g
-  transform="rotate(4720 10 10)
-					translate( 10 -45)"
+  transform="rotate(265 50 50)
+					translate( 50 -5)"
 >
   <circle
     class="someClassName"
@@ -26,8 +26,8 @@ exports[`Pointer > renders correct with type circle 1`] = `
 
 exports[`Pointer > renders correct with type rect 1`] = `
 <g
-  transform="rotate(4720 10 10)
-					translate( 10 -42)"
+  transform="rotate(265 50 50)
+					translate( 50 -2)"
 >
   <rect
     class="someClassName"

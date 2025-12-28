@@ -8,8 +8,8 @@ exports[`Scale > renders correct no type is set 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(90 20 20) 
-        translate(19 -20)
+        rotate(90 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -19,8 +19,8 @@ exports[`Scale > renders correct no type is set 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(130 20 20) 
-        translate(19 -20)
+        rotate(130 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -30,8 +30,19 @@ exports[`Scale > renders correct no type is set 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(170 20 20) 
-        translate(19 -20)
+        rotate(170 50 50) 
+        translate(49 10)
+        "
+    width="2"
+  />
+  <rect
+    class="someActiveClassName"
+    fill="red"
+    height="10"
+    stroke="none"
+    transform="
+        rotate(210 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -41,8 +52,8 @@ exports[`Scale > renders correct no type is set 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(210 20 20) 
-        translate(19 -20)
+        rotate(250 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -52,26 +63,15 @@ exports[`Scale > renders correct no type is set 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(250 20 20) 
-        translate(19 -20)
-        "
-    width="2"
-  />
-  <rect
-    class="someClassName"
-    fill="lime"
-    height="10"
-    stroke="none"
-    transform="
-        rotate(290 20 20) 
-        translate(19 -20)
+        rotate(290 50 50) 
+        translate(49 10)
         "
     width="2"
   />
 </g>
 `;
 
-exports[`Scale > renders correct no type is set to circle 1`] = `
+exports[`Scale > renders correct type is set to circle 1`] = `
 <g>
   <circle
     class="someClassName"
@@ -79,8 +79,8 @@ exports[`Scale > renders correct no type is set to circle 1`] = `
     r="2"
     stroke="none"
     transform="
-        rotate(90 20 20) 
-        translate(19 -20)
+        rotate(90 50 50) 
+        translate(49 10)
         "
   />
   <circle
@@ -89,8 +89,8 @@ exports[`Scale > renders correct no type is set to circle 1`] = `
     r="2"
     stroke="none"
     transform="
-        rotate(130 20 20) 
-        translate(19 -20)
+        rotate(130 50 50) 
+        translate(49 10)
         "
   />
   <circle
@@ -99,8 +99,18 @@ exports[`Scale > renders correct no type is set to circle 1`] = `
     r="2"
     stroke="none"
     transform="
-        rotate(170 20 20) 
-        translate(19 -20)
+        rotate(170 50 50) 
+        translate(49 10)
+        "
+  />
+  <circle
+    class="someActiveClassName"
+    fill="red"
+    r="2"
+    stroke="none"
+    transform="
+        rotate(210 50 50) 
+        translate(49 10)
         "
   />
   <circle
@@ -109,8 +119,8 @@ exports[`Scale > renders correct no type is set to circle 1`] = `
     r="2"
     stroke="none"
     transform="
-        rotate(210 20 20) 
-        translate(19 -20)
+        rotate(250 50 50) 
+        translate(49 10)
         "
   />
   <circle
@@ -119,24 +129,14 @@ exports[`Scale > renders correct no type is set to circle 1`] = `
     r="2"
     stroke="none"
     transform="
-        rotate(250 20 20) 
-        translate(19 -20)
-        "
-  />
-  <circle
-    class="someClassName"
-    fill="lime"
-    r="2"
-    stroke="none"
-    transform="
-        rotate(290 20 20) 
-        translate(19 -20)
+        rotate(290 50 50) 
+        translate(49 10)
         "
   />
 </g>
 `;
 
-exports[`Scale > renders correct no type is set to rect 1`] = `
+exports[`Scale > renders correct type is set to rect 1`] = `
 <g>
   <rect
     class="someClassName"
@@ -144,8 +144,8 @@ exports[`Scale > renders correct no type is set to rect 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(90 20 20) 
-        translate(19 -20)
+        rotate(90 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -155,8 +155,8 @@ exports[`Scale > renders correct no type is set to rect 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(130 20 20) 
-        translate(19 -20)
+        rotate(130 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -166,8 +166,19 @@ exports[`Scale > renders correct no type is set to rect 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(170 20 20) 
-        translate(19 -20)
+        rotate(170 50 50) 
+        translate(49 10)
+        "
+    width="2"
+  />
+  <rect
+    class="someActiveClassName"
+    fill="red"
+    height="10"
+    stroke="none"
+    transform="
+        rotate(210 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -177,8 +188,8 @@ exports[`Scale > renders correct no type is set to rect 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(210 20 20) 
-        translate(19 -20)
+        rotate(250 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -188,19 +199,8 @@ exports[`Scale > renders correct no type is set to rect 1`] = `
     height="10"
     stroke="none"
     transform="
-        rotate(250 20 20) 
-        translate(19 -20)
-        "
-    width="2"
-  />
-  <rect
-    class="someClassName"
-    fill="lime"
-    height="10"
-    stroke="none"
-    transform="
-        rotate(290 20 20) 
-        translate(19 -20)
+        rotate(290 50 50) 
+        translate(49 10)
         "
     width="2"
   />
@@ -211,33 +211,33 @@ exports[`Scale > renders correct with custom render function for ticks 1`] = `
 <g>
   <circle
     r="2"
-    x="19"
-    y="-20"
+    x="49"
+    y="10"
   />
   <circle
     r="2"
-    x="19"
-    y="-20"
+    x="49"
+    y="10"
   />
   <circle
     r="2"
-    x="19"
-    y="-20"
+    x="49"
+    y="10"
   />
   <circle
     r="2"
-    x="19"
-    y="-20"
+    x="49"
+    y="10"
   />
   <circle
     r="2"
-    x="19"
-    y="-20"
+    x="49"
+    y="10"
   />
   <circle
     r="2"
-    x="19"
-    y="-20"
+    x="49"
+    y="10"
   />
 </g>
 `;

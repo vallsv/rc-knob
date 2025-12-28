@@ -1,5 +1,5 @@
-import React from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
+import React, { useMemo } from 'react';
+import { useKnobContext } from './context';
 
 const pointOnCircle = (center: number, radius: number, angle: number) => ({
     x: center + radius * Math.cos(angle),
@@ -55,41 +55,55 @@ interface Props {
     arcWidth: number;
     percentageFrom: number | null;
     percentageTo: number | null;
-    radius?: number;
     outerRadius?: number;
+    /**
+     * Override the `radius` from the knob
+     */
+    radius?: number;
 }
 
-export function Range(props: PropsWithKnobState<Props>) {
-    assertKnobState(props);
+export function Range(props: Props) {
+    const state = useKnobContext('Range');
+    const { percentage } = state;
     const {
         color,
-        percentage,
         percentageFrom = null,
         percentageTo = null,
+        radius = state.radius,
+        outerRadius,
+        arcWidth,
     } = props;
-    let pfrom: number | null;
-    let pto: number | null;
-    if (percentageFrom !== null && percentageTo !== null) {
-        pfrom = percentageFrom;
-        pto = percentageTo;
-    } else if (percentageFrom !== null) {
-        pfrom = percentageFrom;
-        pto = percentage;
-    } else if (percentageTo !== null) {
-        pfrom = percentage;
-        pto = percentageTo;
-    } else {
-        pfrom = 0;
-        pto = percentage;
-    }
-    if (pfrom === null || pto === null) {
+
+    const [pFrom, pTo] = useMemo(() => {
+        if (percentageFrom !== null && percentageTo !== null) {
+            return [percentageFrom, percentageTo];
+        }
+        if (percentageFrom !== null) {
+            return [percentageFrom, percentage];
+        }
+        if (percentageTo !== null) {
+            return [percentage, percentageTo];
+        }
+        // We could argue it's a problem instead or returning a value content
+        return [0, percentage];
+    }, [percentage, percentageFrom, percentageTo]);
+
+    const d = useMemo(() => {
+        if (pFrom === null || pTo === null) {
+            return null;
+        }
+        return calcPath({
+            arcWidth,
+            ...state,
+            radius: outerRadius ?? radius ?? state.radius,
+            percentageFrom: pFrom,
+            percentageTo: pTo,
+        });
+    }, [pFrom, pTo, outerRadius, radius, state]);
+
+    if (d === null) {
         return <></>;
     }
-    const d = calcPath({
-        ...props,
-        percentageFrom: pfrom,
-        percentageTo: pto,
-    });
     return (
         <g>
             <path d={d} style={{ fill: color }} />

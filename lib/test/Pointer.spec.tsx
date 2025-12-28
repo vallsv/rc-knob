@@ -1,49 +1,49 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { Pointer } from '../src/Pointer';
+import { Knob, Pointer } from '../src';
 
 describe('Pointer', () => {
     it('renders correct with type rect', () => {
         const { container } = render(
-            <svg>
+            <Knob
+                min={0}
+                max={100}
+                value={50}
+                size={100}
+                angleOffset={220}
+                angleRange={90}
+            >
                 <Pointer
                     type="rect"
                     width={5}
                     height={2}
-                    angleOffset={220}
-                    angleRange={90}
-                    percentage={50}
-                    radius={50}
-                    center={10}
                     color="red"
                     className="someClassName"
-                    value={0}
-                    size={10}
                 />
-            </svg>,
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
     it('renders correct with type circle', () => {
         const { container } = render(
-            <svg>
+            <Knob
+                min={0}
+                max={100}
+                value={50}
+                size={100}
+                angleOffset={220}
+                angleRange={90}
+            >
                 <Pointer
                     type="circle"
                     width={5}
-                    angleOffset={220}
-                    angleRange={90}
-                    percentage={50}
-                    radius={50}
-                    center={10}
                     color="red"
                     className="someClassName"
-                    value={0}
-                    size={10}
                 />
-            </svg>,
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
 
     it('renders correct with a child as pointer', () => {
@@ -51,23 +51,19 @@ describe('Pointer', () => {
             <circle r={`${width}`} />
         );
         const { container } = render(
-            <svg>
-                <Pointer
-                    width={5}
-                    angleOffset={220}
-                    angleRange={90}
-                    percentage={50}
-                    radius={50}
-                    center={10}
-                    color="red"
-                    className="someClassName"
-                    value={0}
-                    size={10}
-                >
+            <Knob
+                min={0}
+                max={100}
+                value={50}
+                size={100}
+                angleOffset={220}
+                angleRange={90}
+            >
+                <Pointer width={5} color="red" className="someClassName">
                     <CustomPointer width={0} />
                 </Pointer>
-            </svg>,
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
 });

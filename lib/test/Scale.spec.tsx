@@ -1,79 +1,82 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { RenderCustomProps, Scale } from '../src/Scale';
+import { RenderCustomProps, Knob, Scale } from '../src';
 
 describe('Scale', () => {
     it('renders correct no type is set', () => {
         const { container } = render(
-            <svg>
+            <Knob
+                min={0}
+                max={100}
+                value={50}
+                size={100}
+                angleOffset={90}
+                angleRange={200}
+            >
                 <Scale
-                    angleRange={200}
                     steps={5}
                     radius={40}
                     tickWidth={2}
                     tickHeight={10}
-                    angleOffset={90}
-                    center={20}
-                    percentage={50}
                     color="lime"
                     activeColor="red"
                     className="someClassName"
                     activeClassName="someActiveClassName"
-                    value={0}
-                    size={10}
                 />
-            </svg>,
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
-    it('renders correct no type is set to rect', () => {
+    it('renders correct type is set to rect', () => {
         const { container } = render(
-            <svg>
+            <Knob
+                min={0}
+                max={100}
+                value={50}
+                size={100}
+                angleOffset={90}
+                angleRange={200}
+            >
                 <Scale
                     type="rect"
-                    angleRange={200}
                     steps={5}
                     radius={40}
                     tickWidth={2}
                     tickHeight={10}
-                    angleOffset={90}
-                    center={20}
-                    percentage={50}
                     color="lime"
                     activeColor="red"
                     className="someClassName"
                     activeClassName="someActiveClassName"
-                    value={0}
-                    size={10}
                 />
-            </svg>,
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
-    it('renders correct no type is set to circle', () => {
+    it('renders correct type is set to circle', () => {
         const { container } = render(
-            <svg>
+            <Knob
+                min={0}
+                max={100}
+                value={50}
+                size={100}
+                angleOffset={90}
+                angleRange={200}
+            >
                 <Scale
                     type="circle"
-                    angleRange={200}
                     steps={5}
                     radius={40}
                     tickWidth={2}
                     tickHeight={10}
-                    angleOffset={90}
-                    center={20}
-                    percentage={50}
                     color="lime"
                     activeColor="red"
                     className="someClassName"
                     activeClassName="someActiveClassName"
-                    value={0}
-                    size={10}
                 />
-            </svg>,
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
     it('renders correct with custom render function for ticks', () => {
         const fn = (props: RenderCustomProps) => (
@@ -85,26 +88,27 @@ describe('Scale', () => {
             />
         );
         const { container } = render(
-            <svg>
+            <Knob
+                min={0}
+                max={100}
+                value={50}
+                size={100}
+                angleOffset={90}
+                angleRange={200}
+            >
                 <Scale
-                    angleRange={200}
                     steps={5}
                     radius={40}
                     tickWidth={2}
                     tickHeight={10}
-                    angleOffset={90}
-                    center={20}
-                    percentage={50}
                     color="lime"
                     activeColor="red"
                     className="someClassName"
                     activeClassName="someActiveClassName"
                     fn={fn}
-                    value={0}
-                    size={10}
                 />
-            </svg>,
+            </Knob>,
         );
-        expect(container.children[0].children[0]).toMatchSnapshot();
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
 });

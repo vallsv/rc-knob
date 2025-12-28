@@ -3,26 +3,28 @@ title: Knob
 description: Knob component
 ---
 
-import colors from '@site/src/helpers/colors';
-import { Knob, Pointer, Range, Label, Scale, Arc } from '@vallsv/rc-knob';
+The `Knob` component is the root component that handles all the user interactions.
 
-The `Knob` component is root component that handles all the user interactions.
-
-It does not render any visual UI elements but a `<div><svg></svg></div>`.
-
-All children will be added to the `<svg>` element.
+It does not render any visual UI elements but creates a root `<div><svg></svg></div>`.
+All children will be added inside this `<svg>` element.
 
 It handles the user interaction by mouse, mouse wheel and keyboard arrow keys.
+
 It is accessible by keyboard using `tab`.
+
+The main properties allow to setup the value and the global geometry of the
+knob.
 
 ```js static
 <Knob
-    size={100}
-    angleOffset={220}
-    angleRange={280}
+    // hold value
     value={33}
     min={0}
     max={100}
+    // geometry
+    size={100}
+    angleOffset={220}
+    angleRange={280}
 >
     ...
 </Knob>
@@ -30,276 +32,242 @@ It is accessible by keyboard using `tab`.
 
 ## Value
 
-The knob hold a numeric `value`. This value is constained between `min` and
-`max`.
+The knob hold a numeric `value`. It's an uncontrolled value constained
+between `min` and `max`.
+
+The `value` can also be set to `null`. In this case the knob will
+not show the location.
 
 ## Geometry
 
-The `size` is the diameter of the knob.
+The `size` is the diameter of the knob. The root `<div>` is setup
+with this information as `height` and `width`. The knob is defined
+by the incircle bounded by this square.
 
-`angleOffset` and `angleRange` are used to define the knob geometry.
+![Circle geometry](@site/static/img/geometry_1.svg)
 
-It is relative to the top of the knob, and clockwise.
+`angleOffset` and `angleRange` are used to define the location of
+the begin/end positions. It have to be defined in a radial coordinate,
+where the `0` is on the top of the knob, and clockwise.
 
-export const Marker = ({ angle }) => {
-    return <></>;
-};
+![Circle geometry](@site/static/img/geometry_2.svg)
 
-<Knob size={150} angleOffset={0} angleRange={360} min={0} max={100}>
-    <Pointer
-        percentage={0 / 360}
-        width={5}
-        height={30}
-        radius={0}
-        type="rect"
-        color={colors.primary}
-    />
-    <Label
-        percentage={0.0}
-        radius={50}
-        label="0 deg"
-        style={{ fontSize: '80%' }}
-    />
-    <Pointer
-        percentage={140 / 360}
-        width={5}
-        height={30}
-        radius={0}
-        type="rect"
-        color={colors.primary}
-    />
-    <Label
-        percentage={140 / 360}
-        radius={50}
-        label="140 deg"
-        style={{ fontSize: '80%' }}
-    />
-    <Pointer
-        percentage={220 / 360}
-        width={5}
-        height={30}
-        radius={0}
-        type="rect"
-        color={colors.primary}
-    />
-    <Label
-        percentage={220 / 360}
-        radius={50}
-        label="220 deg"
-        style={{ fontSize: '80%' }}
-    />
-    <Range
-        radius={30}
-        arcWidth={5}
-        color={colors.primary}
-        percentageFrom={0.0}
-        percentageTo={0.5}
-    />
-    <Range
-        radius={30}
-        arcWidth={5}
-        color={colors.primary}
-        percentageFrom={0.5}
-        percentageTo={1.0}
-    />
-</Knob>
+`angleOffset` is the begin position (when the `value`
+is the minimal), and `angleRange` is the range of the interaction
+from the begin to the end.`angleOffset+angleRange` is the end
+position.
 
-## Properties
+![Circle geometry](@site/static/img/geometry_3.svg)
 
-<table>
-    <tr>
-        <th>Prop</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td>`angleOffset`</td>
-        <td>number</td>
-        <td>0</td>
-        <td>
-            Offset of the start angle in degree of the knob. The origin `0` in
-            on top and clockwise.
-        </td>
-    </tr>
-    <tr>
-        <td>`angleRange`</td>
-        <td>number</td>
-        <td>360</td>
-        <td>Graphical range of the knob in degree clockwise.</td>
-    </tr>
-    <tr>
-        <td>`ariaLabelledBy`</td>
-        <td>string</td>
-        <td></td>
-        <td>Will be added as `aria-labelledby` to the knob main element.</td>
-    </tr>
-    <tr>
-        <td>`ariaValueText`</td>
-        <td>string</td>
-        <td></td>
-        <td>Will be added as `aria-valuetext` to the knob main element.</td>
-    </tr>
-    <tr>
-        <td>`children`</td>
-        <td>elements</td>
-        <td></td>
-        <td>
-            Can be any of knob subcomponents and SVG elements including
-            `filter`.
-        </td>
-    </tr>
-    <tr>
-        <td>`className`</td>
-        <td>string</td>
-        <td></td>
-        <td>Will be added to the knob main element.</td>
-    </tr>
-    <tr>
-        <td>`interactiveHook`</td>
-        <td>function</td>
-        <td></td>
-        <td>
-            Callback to tune the behaviour of the knob during the mouse
-            interaction. See the [details on
-            `interactiveHook`](#interactivehook) bellow.
-        </td>
-    </tr>
-    <tr>
-        <td>`max`</td>
-        <td>number</td>
-        <td></td>
-        <td>Max value of the knob.</td>
-    </tr>
-    <tr>
-        <td>`min`</td>
-        <td>number</td>
-        <td></td>
-        <td>Min value of the knob.</td>
-    </tr>
-    <tr>
-        <td>`multiRotation`</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td>
-            If `true`, the knob can be turned many times. `min`/`max` are not
-            taken into acount anymore to limit the value.
-        </td>
-    </tr>
-    <tr>
-        <td>`onChange`</td>
-        <td>function</td>
-        <td></td>
-        <td>
-            Callback that will pass the value when user interact with the knob.
-            If `tracking=false` this callback is not called during mouse
-            dragging, but is triggered when the mouse is release (if the value
-            have changed)
-        </td>
-    </tr>
-    <tr>
-        <td>`onEnd`</td>
-        <td>function</td>
-        <td></td>
-        <td>Callback triggered when the dragging end.</td>
-    </tr>
-    <tr>
-        <td>`onInteractiveChange`</td>
-        <td>function</td>
-        <td></td>
-        <td>Callback that will pass the value during dragging.</td>
-    </tr>
-    <tr>
-        <td>`onStart`</td>
-        <td>function</td>
-        <td></td>
-        <td>Callback triggered when the dragging start.</td>
-    </tr>
-    <tr>
-        <td>`readOnly`</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td>
-            Indicates if the knob is editable. If true the knob do not react to
-            user input
-        </td>
-    </tr>
-    <tr>
-        <td>`size`</td>
-        <td>integer</td>
-        <td></td>
-        <td>Width and height of the knob in `px`</td>
-    </tr>
-    <tr>
-        <td>`snap`</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td>
-            Indicates if the knob should snap to a step. Has only an effect if
-            `steps` is set.
-        </td>
-    </tr>
-    <tr>
-        <td>`steps`</td>
-        <td>interger</td>
-        <td></td>
-        <td>
-            Number of steps the knob can snap to. It's also used to calculate
-            the single steps for the `Scale` component.
-        </td>
-    </tr>
-    <tr>
-        <td>`tracking`</td>
-        <td>boolean</td>
-        <td>true</td>
-        <td>
-            Control the behaviour of `onChange` during mouse dragging. If
-            `true`, `onChange` is triggered during mouse dragging. If `false`,
-            `onChange` is not triggered during mouse dragging, but is triggered
-            when the mouse is release (if the value have changed).
-        </td>
-    </tr>
-    <tr>
-        <td>`useMouseWheel`</td>
-        <td>boolean</td>
-        <td>true</td>
-        <td>
-            Indicates if the knob can be edited with the mouse wheel. If `true`
-            the knob uses mouse wheel event, and the default wheel event is
-            inhibited. Set to `false` can prevent to edit the widget during page
-            scroll. Default is `true`.
-        </td>
-    </tr>
-    <tr>
-        <td>`value`</td>
-        <td>number</td>
-        <td>0</td>
-        <td>Initial value of the knob</td>
-    </tr>
-
-</table>
-
-## Anticlockwise
-
-If `angleRange` is negative, the interaction is anticlockwise.
-
+```jsx live
 <Knob
     size={100}
-    angleOffset={140}
-    angleRange={-280}
+    angleOffset={225}
+    angleRange={270}
     value={33}
     min={0}
     max={100}
 >
-    <Arc arcWidth={5} color={colors.primary} background={colors.shadow} />
-    <Pointer
-        width={5}
-        height={40}
-        radius={10}
-        type="rect"
-        color={colors.primary}
-    />
+    <Arc arcWidth={5} color="#FC5A96" background="#CCCCCC" />
+    <Pointer width={5} height={40} radius={10} type="rect" color="#FC5A96" />
 </Knob>
+```
+
+With this geometry, `angleRange` can be negative. In this case the
+interaction became anti clockwise.
+
+```jsx live
+<Knob
+    size={100}
+    angleOffset={135}
+    angleRange={-270}
+    value={33}
+    min={0}
+    max={100}
+>
+    <Arc arcWidth={5} color="#FC5A96" background="#CCCCCC" />
+    <Pointer width={5} height={40} radius={10} type="rect" color="#FC5A96" />
+</Knob>
+```
+
+## Properties
+
+<table>
+    <tbody>
+        <tr>
+            <th>Prop</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>`angleOffset`</td>
+            <td>number</td>
+            <td>0</td>
+            <td>
+                Offset of the start angle in degree of the knob. The origin `0`
+                in on top and clockwise.
+            </td>
+        </tr>
+        <tr>
+            <td>`angleRange`</td>
+            <td>number</td>
+            <td>360</td>
+            <td>Graphical range of the knob in degree clockwise.</td>
+        </tr>
+        <tr>
+            <td>`ariaLabelledBy`</td>
+            <td>string</td>
+            <td></td>
+            <td>
+                Will be added as `aria-labelledby` to the knob main element.
+            </td>
+        </tr>
+        <tr>
+            <td>`ariaValueText`</td>
+            <td>string</td>
+            <td></td>
+            <td>Will be added as `aria-valuetext` to the knob main element.</td>
+        </tr>
+        <tr>
+            <td>`children`</td>
+            <td>elements</td>
+            <td></td>
+            <td>
+                Can be any of knob subcomponents and SVG elements including
+                `filter`.
+            </td>
+        </tr>
+        <tr>
+            <td>`className`</td>
+            <td>string</td>
+            <td></td>
+            <td>Will be added to the knob main element.</td>
+        </tr>
+        <tr>
+            <td>`interactiveHook`</td>
+            <td>function</td>
+            <td></td>
+            <td>
+                Callback to tune the behaviour of the knob during the mouse
+                interaction. See the [details on
+                `interactiveHook`](#interactivehook) bellow.
+            </td>
+        </tr>
+        <tr>
+            <td>`max`</td>
+            <td>number</td>
+            <td></td>
+            <td>Max value of the knob.</td>
+        </tr>
+        <tr>
+            <td>`min`</td>
+            <td>number</td>
+            <td></td>
+            <td>Min value of the knob.</td>
+        </tr>
+        <tr>
+            <td>`multiRotation`</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>
+                If `true`, the knob can be turned many times. `min`/`max` are
+                not taken into acount anymore to limit the value.
+            </td>
+        </tr>
+        <tr>
+            <td>`onChange`</td>
+            <td>function</td>
+            <td></td>
+            <td>
+                Callback that will pass the value when user interact with the
+                knob. If `tracking=false` this callback is not called during
+                mouse dragging, but is triggered when the mouse is release (if
+                the value have changed)
+            </td>
+        </tr>
+        <tr>
+            <td>`onEnd`</td>
+            <td>function</td>
+            <td></td>
+            <td>Callback triggered when the dragging end.</td>
+        </tr>
+        <tr>
+            <td>`onInteractiveChange`</td>
+            <td>function</td>
+            <td></td>
+            <td>Callback that will pass the value during dragging.</td>
+        </tr>
+        <tr>
+            <td>`onStart`</td>
+            <td>function</td>
+            <td></td>
+            <td>Callback triggered when the dragging start.</td>
+        </tr>
+        <tr>
+            <td>`readOnly`</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>
+                Indicates if the knob is editable. If true the knob do not react
+                to user input
+            </td>
+        </tr>
+        <tr>
+            <td>`size`</td>
+            <td>integer</td>
+            <td></td>
+            <td>Width and height of the knob in `px`</td>
+        </tr>
+        <tr>
+            <td>`snap`</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>
+                Indicates if the knob should snap to a step. Has only an effect
+                if `steps` is set.
+            </td>
+        </tr>
+        <tr>
+            <td>`steps`</td>
+            <td>interger</td>
+            <td></td>
+            <td>
+                Number of steps the knob can snap to. It's also used to
+                calculate the single steps for the `Scale` component.
+            </td>
+        </tr>
+        <tr>
+            <td>`tracking`</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>
+                Control the behaviour of `onChange` during mouse dragging. If
+                `true`, `onChange` is triggered during mouse dragging. If
+                `false`, `onChange` is not triggered during mouse dragging, but
+                is triggered when the mouse is release (if the value have
+                changed).
+            </td>
+        </tr>
+        <tr>
+            <td>`useMouseWheel`</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>
+                Indicates if the knob can be edited with the mouse wheel. If
+                `true` the knob uses mouse wheel event, and the default wheel
+                event is inhibited. Set to `false` can prevent to edit the
+                widget during page scroll. Default is `true`.
+            </td>
+        </tr>
+        <tr>
+            <td>`value`</td>
+            <td>number</td>
+            <td>0</td>
+            <td>Initial value of the knob</td>
+        </tr>
+    </tbody>
+</table>
 
 ## interactiveHook
 

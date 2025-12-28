@@ -1,12 +1,16 @@
-import React from 'react';
-import { assertKnobState, type PropsWithKnobState } from './types';
+import { useKnobContext } from './context';
+import React, { useMemo } from 'react';
 
-const pointOnCircle = (center: number, radius: number, angle: number) => ({
-    x: center + radius * Math.cos(angle),
-    y: center + radius * Math.sin(angle),
-});
+function pointOnCircle(center: number, radius: number, angle: number) {
+    return {
+        x: center + radius * Math.cos(angle),
+        y: center + radius * Math.sin(angle),
+    };
+}
 
-const degTorad = (deg: number) => (Math.PI * deg) / 180;
+function degTorad(deg: number) {
+    return (Math.PI * deg) / 180;
+}
 
 function ordered(v1: number, p1: number, v2: number, p2: number) {
     if (v1 <= v2) {
@@ -16,16 +20,7 @@ function ordered(v1: number, p1: number, v2: number, p2: number) {
     }
 }
 
-const calcPath = ({
-    percentageFrom,
-    percentageTo,
-    angleOffset,
-    angleRange,
-    arcWidth,
-    outerRadiusFrom,
-    outerRadiusTo,
-    center,
-}: {
+function calcPath(props: {
     percentageFrom: number;
     percentageTo: number;
     angleOffset: number;
@@ -34,7 +29,17 @@ const calcPath = ({
     outerRadiusFrom: number;
     outerRadiusTo: number;
     center: number;
-}) => {
+}) {
+    const {
+        percentageFrom,
+        percentageTo,
+        angleOffset,
+        angleRange,
+        arcWidth,
+        outerRadiusFrom,
+        outerRadiusTo,
+        center,
+    } = props;
     const [percentageMin, outerRadiusMin, percentageMax, outerRadiusMax] =
         ordered(percentageFrom, outerRadiusFrom, percentageTo, outerRadiusTo);
     const angle = angleRange * (percentageMax - percentageMin);
@@ -70,7 +75,7 @@ const calcPath = ({
         }
     }
     return `M ${start}A ${forth}L ${link}A ${back}z`;
-};
+}
 
 interface Props {
     color: string;
@@ -81,44 +86,63 @@ interface Props {
     arcWidth: number;
 }
 
-export function Spiral(props: PropsWithKnobState<Props>) {
-    assertKnobState(props);
+export function Spiral(props: Props) {
+    const state = useKnobContext('Spiral');
+    const { percentage, angleOffset, angleRange, center } = state;
     const {
         color,
-        percentage,
         percentageFrom = null,
         radiusFrom = null,
         percentageTo = null,
         radiusTo = null,
-        ...others
+        arcWidth,
     } = props;
-    let pfrom, pto;
-    if (percentageFrom !== null && percentageTo !== null) {
-        pfrom = percentageFrom;
-        pto = percentageTo;
-    } else if (percentageFrom !== null) {
-        pfrom = percentageFrom;
-        pto = percentage;
-    } else if (percentageTo !== null) {
-        pfrom = percentage;
-        pto = percentageTo;
-    } else {
-        pfrom = 0;
-        pto = percentage;
-    }
-    if (radiusFrom === null || radiusTo === null) {
+
+    const [pFrom, pTo] = useMemo(() => {
+        if (percentageFrom !== null && percentageTo !== null) {
+            return [percentageFrom, percentageTo];
+        }
+        if (percentageFrom !== null) {
+            return [percentageFrom, percentage];
+        }
+        if (percentageTo !== null) {
+            return [percentage, percentageTo];
+        }
+        // We could argue it's a problem instead or returning a value content
+        return [0, percentage];
+    }, [percentage, percentageFrom, percentageTo]);
+
+    const d = useMemo(() => {
+        if (radiusFrom === null || radiusTo === null) {
+            return null;
+        }
+        if (pFrom === null || pTo === null) {
+            return null;
+        }
+        return calcPath({
+            percentageFrom: pFrom,
+            percentageTo: pTo,
+            outerRadiusFrom: radiusFrom,
+            outerRadiusTo: radiusTo,
+            angleOffset,
+            angleRange,
+            arcWidth,
+            center,
+        });
+    }, [
+        pFrom,
+        pTo,
+        radiusFrom,
+        radiusTo,
+        angleOffset,
+        angleRange,
+        arcWidth,
+        center,
+    ]);
+
+    if (d === null) {
         return <></>;
     }
-    if (pfrom === null || pto === null) {
-        return <></>;
-    }
-    const d = calcPath({
-        percentageFrom: pfrom,
-        percentageTo: pto,
-        outerRadiusFrom: radiusFrom,
-        outerRadiusTo: radiusTo,
-        ...others,
-    });
     return (
         <g>
             <path d={d} style={{ fill: color }} />
