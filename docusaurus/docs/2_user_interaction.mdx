@@ -10,6 +10,8 @@ Few properties can be used to reach and tune the knob with user interaction.
 
 ## Mouse callbacks
 
+The user interaction can be tracked with `onChange`, `onStart`, `onEnd`.
+
 <Knob
     value={0}
     size={100}
@@ -27,6 +29,9 @@ Few properties can be used to reach and tune the knob with user interaction.
 
 ## Disable user interaction
 
+The property `readOnly` can be set to true, which disable any user
+interaction.
+
 <Knob
     value={0}
     size={100}
@@ -39,11 +44,13 @@ Few properties can be used to reach and tune the knob with user interaction.
     onEnd={(e) => console.log('Interaction ended')}
     readOnly
 >
-    <circle r="40" cx="50" cy="50" fill={colors.primary} />
+    <circle r="40" cx="50" cy="50" fill={colors.disabled} />
     <Pointer width={3} height={30} radius={10} type="rect" color="#fff" />
 </Knob>
 
 ## Disable mouse wheel
+
+The property `useMouseWheel` can be set to false.
 
 <Knob
     value={0}
@@ -88,7 +95,7 @@ And this interaction can be cancelled with mouse right button.
 A hook is provided to change the interaction behaviour during a dragging
 interaction.
 
-The following example inhibite the center of the knob, snap 8 location over the
+The following example inhibite the center of the knob, snap 9 location over the
 knob and provides free moving outside of the knob.
 
 export const interactiveHook = (e) => {
@@ -96,7 +103,7 @@ export const interactiveHook = (e) => {
         // inhibite the center of the knob
         return { readOnly: true };
     }
-    if (e.mouseRadius < 50) {
+    if (e.mouseRadius < 40) {
         // snap on steps over the knob
         return { steps: 8 };
     }
@@ -118,5 +125,6 @@ export const interactiveHook = (e) => {
     interactiveHook={interactiveHook}
 >
     <circle r="40" cx="50" cy="50" fill={colors.primary} />
+    <circle r="20" cx="50" cy="50" fill={colors.disabled} stroke="white" />
     <Pointer width={3} height={30} radius={10} type="rect" color="#fff" />
 </Knob>
