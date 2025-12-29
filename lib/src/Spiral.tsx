@@ -78,7 +78,7 @@ function calcPath(props: {
 }
 
 interface Props {
-    color: string;
+    color?: string;
     percentageFrom?: number | null;
     radiusFrom?: number | null;
     percentageTo?: number | null;
