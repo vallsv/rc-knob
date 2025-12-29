@@ -17,7 +17,7 @@ function Example(props) {
                 cx={state.center}
                 cy={state.center}
                 r={state.size * 0.5 * state.percentage - 6}
-                style={{fill: `oklch(0.5 100% ${150 + Math.floor(p*100)})`}}
+                style={{ fill: `oklch(0.5 100% ${150 + Math.floor(p * 100)})` }}
             />
         );
     }
@@ -55,13 +55,7 @@ function Example(props) {
     }
 
     return (
-        <Knob
-            size={100}
-            angleOffset={220}
-            angleRange={280}
-            min={0}
-            max={100}
-        >
+        <Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
             <Arc arcWidth={5} color="#FC5A96" radius={47.5} />
             <Pointer width={3} height={40} radius={0} color="#FC5A96">
                 <CustomPointer />
@@ -86,7 +80,7 @@ function Example(props) {
         stepSize,
         center,
         active,
-        i
+        i,
     }) {
         return (
             <rect
@@ -104,13 +98,7 @@ function Example(props) {
     }
 
     return (
-        <Knob
-            size={100}
-            angleOffset={220}
-            angleRange={280}
-            min={0}
-            max={100}
-        >
+        <Knob size={100} angleOffset={220} angleRange={280} min={0} max={100}>
             <Scale
                 steps={40}
                 tickWidth={1}
