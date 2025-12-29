@@ -1,0 +1,33 @@
+---
+title: Controlled
+description: Controlled widget
+---
+
+import GaugeExample from '@site/src/components/GaugeExample';
+
+Actually the knob hold the value. The component can't be used as a controlled
+widget directly.
+
+But, we can redefine the value or position to each sub components. This
+behaves in the end like a controlled widget.
+
+### Gauge
+
+Create a gauge widget controlled by a random value.
+
+This value is reinjected to the sub components `Pointer` and `Value`.
+
+This is an advanced example, with controlled "warning" and "danger" region
+for the value.
+
+<GaugeExample
+    value="rand"
+    min={0}
+    lowDanger={10}
+    lowWarning={30}
+    hiWarning={70}
+    hiDanger={90}
+    max={100}
+/>
+
+See the [source code](@site/src/components/GaugeExample).
