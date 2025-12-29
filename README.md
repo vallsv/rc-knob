@@ -26,9 +26,9 @@ So all logic is done in the `Knob` component which is the root component.
 All visual UI is done in one of this components: `Arc`, `Pointer`, `Scale`, `Value`
 and few others.
 
-All the UI component don't do anything beside rendering and are useless on their own
-as they need a bunch of props that they get from the parent `Knob` component to render
-the current value of the knob.
+All the UI components don't do anything beside rendering and are useless on their own.
+They need the context sharing the knob state which is provided from the parent `Knob`
+component.
 
 Finally everything is rendered as SVG.
 
