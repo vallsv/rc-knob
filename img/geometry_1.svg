@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="162.97" height="145.67" version="1.1" viewBox="0 0 43.12 38.543" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="Arrow1Lstart" overflow="visible" orient="auto">
+   <path transform="matrix(.8 0 0 .8 10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill="#000000" fill-rule="evenodd" stroke="#000000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Lend" overflow="visible" orient="auto">
+   <path transform="matrix(-.8 0 0 -.8 -10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill="#000000" fill-rule="evenodd" stroke="#000000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Lstart-3" overflow="visible" orient="auto">
+   <path transform="matrix(.8 0 0 .8 10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill="#000000" fill-rule="evenodd" stroke="#000000" stroke-width="1pt"/>
+  </marker>
+  <marker id="Arrow1Lend-7" overflow="visible" orient="auto">
+   <path transform="matrix(-.8 0 0 -.8 -10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill="#000000" fill-rule="evenodd" stroke="#000000" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <g transform="translate(-58.855 -42.339)">
+  <g fill="none" stroke="#000000">
+   <rect x="59.222" y="42.706" width="28.662" height="28.662" ry="0" stop-color="#000000" stroke-linejoin="round" stroke-width=".2" style="paint-order:stroke markers fill"/>
+   <ellipse cx="73.553" cy="57.037" rx="14.331" ry="14.331" stop-color="#000000" stroke-linejoin="round" stroke-width=".62991" style="paint-order:stroke markers fill"/>
+   <path d="m59.222 76.496h28.662" marker-end="url(#Arrow1Lend)" marker-start="url(#Arrow1Lstart)" stroke-miterlimit="1.7" stroke-width=".18897"/>
+   <path d="m92.724 42.706v28.662" marker-end="url(#Arrow1Lend-7)" marker-start="url(#Arrow1Lstart-3)" stroke-miterlimit="1.7" stroke-width=".18897"/>
+  </g>
+  <text x="94.72538" y="58.470665" font-family="sans-serif" font-size="3.8445px" letter-spacing="0px" stroke-width=".096112" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="94.72538" y="58.470665" stroke-width=".096112">size</tspan></text>
+  <text x="69.823822" y="80.828148" font-family="sans-serif" font-size="3.8445px" letter-spacing="0px" stroke-width=".096112" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="69.823822" y="80.828148" stroke-width=".096112">size</tspan></text>
+ </g>
+</svg>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="172.09" height="145.57" version="1.1" viewBox="0 0 45.532 38.514" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="Arrow1Lend" overflow="visible" orient="auto">
+   <path transform="matrix(-.8 0 0 -.8 -10 0)" d="m0 0 5-5-17.5 5 17.5 5z" fill="#000000" fill-rule="evenodd" stroke="#000000" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <g transform="translate(-55.307 -42.748)">
+  <rect x="64.852" y="47.783" width="28.662" height="28.662" ry="0" fill="none" stop-color="#000000" stroke="#000000" stroke-linejoin="round" stroke-width=".2" style="paint-order:stroke markers fill"/>
+  <path d="m79.071 47.784a14.331 14.331 0 0 1 13.317 8.7615 14.331 14.331 0 0 1-3.0203 15.652 14.331 14.331 0 0 1-15.621 3.1774 14.331 14.331 0 0 1-8.8948-13.228" fill="none" stop-color="#000000" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".62991" style="paint-order:stroke markers fill"/>
+  <g font-family="sans-serif" font-size="3.8445px" letter-spacing="0px" stroke-width=".096112" word-spacing="0px">
+   <text x="71.771446" y="45.669029" style="line-height:1.25" xml:space="preserve"><tspan x="71.771446" y="45.669029" stroke-width=".096112">0 degre</tspan></text>
+   <text x="96.202522" y="63.513866" style="line-height:1.25" xml:space="preserve"><tspan x="96.202522" y="63.513866" stroke-width=".096112">90</tspan></text>
+   <text x="75.43103" y="81.207954" style="line-height:1.25" xml:space="preserve"><tspan x="75.43103" y="81.207954" stroke-width=".096112">180</tspan></text>
+   <text x="55.025646" y="63.513866" style="line-height:1.25" xml:space="preserve"><tspan x="55.025646" y="63.513866" stroke-width=".096112">270</tspan></text>
+  </g>
+  <g stroke="#000000">
+   <circle cx="43.065" cy="54.572" r=".0018692" fill="#000000" stroke-width=".26458"/>
+   <circle cx="42.406" cy="46.263" r=".0018692" fill="#000000" stroke-width=".26458"/>
+   <path d="m64.852 62.146v-2.2534" fill="none" marker-end="url(#Arrow1Lend)" stroke-width=".21167"/>
+  </g>
+ </g>
+</svg>
