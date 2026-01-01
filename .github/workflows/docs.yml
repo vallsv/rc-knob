@@ -3,30 +3,35 @@ name: github pages
 on:
   push:
     branches:
-    - master
+    - main
     paths:
-    - side/**/*.js
-    - side/package.json
+    - docusaurus/**/*
+    - docusaurus/package.json
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
 
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 10
+
     - name: Use Node.js 
       uses: actions/setup-node@v1
       with:
         node-version: 10.x
 
-    - name: yarn install and test
+    - name: pnpm install and test
       run: |
         cd side
-        yarn
-        yarn build
+        pnpm install
+        pnpm build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
       env:
         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./side/build
+        PUBLISH_DIR: ./docusaurus/build
