@@ -4,6 +4,7 @@ description: Controlled widget
 ---
 
 import GaugeExample from '@site/src/components/GaugeExample';
+import GaugeExample2 from '@site/src/components/GaugeExample2';
 
 Actually the knob hold the value. The component can't be used as a controlled
 widget directly.
@@ -31,3 +32,17 @@ for the value.
 />
 
 See the [source code](@site/src/components/GaugeExample).
+
+### Gauge with power
+
+<GaugeExample2
+    value="rand"
+    min={0}
+    lowDanger={10}
+    lowWarning={30}
+    hiWarning={70}
+    hiDanger={90}
+    max={100}
+/>
+
+See the [source code](@site/src/components/GaugeExample2).

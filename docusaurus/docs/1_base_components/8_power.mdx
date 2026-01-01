@@ -1,0 +1,151 @@
+---
+title: Power
+description: Power component
+---
+
+The `Power` component displays a growing power indicator between 2 angles.
+
+```jsx live
+<Knob
+    size={100}
+    value={50}
+    min={0}
+    max={100}
+    angleOffset={220}
+    angleRange={280}
+>
+    <Power
+        percentageFrom={0}
+        radiusFrom={40}
+        widthFrom={0}
+        percentageTo={1}
+        radiusTo={40}
+        widthTo={20}
+        color="#FC5A96"
+        interpolateTo={true}
+    />
+</Knob>
+```
+
+## Stack
+
+The `Power` component can be stacked together the following way.
+
+```jsx live
+<Knob
+    size={100}
+    value={50}
+    min={0}
+    max={100}
+    angleOffset={220}
+    angleRange={280}
+>
+    <Power
+        percentageFrom={0}
+        radiusFrom={40}
+        widthFrom={0}
+        percentageTo={0.5}
+        radiusTo={40}
+        widthTo={10}
+        color="#6bca6c"
+        interpolateTo={true}
+    />
+    <Power
+        percentageFrom={0.5}
+        radiusFrom={40}
+        widthFrom={10}
+        percentageTo={0.75}
+        radiusTo={40}
+        widthTo={15}
+        color="#fccf41"
+        interpolateTo={true}
+    />
+    <Power
+        percentageFrom={0.75}
+        radiusFrom={40}
+        widthFrom={15}
+        percentageTo={1}
+        radiusTo={40}
+        widthTo={20}
+        color="#fb5463"
+        interpolateTo={true}
+    />
+</Knob>
+```
+
+## Geometry
+
+Here is the way the component is built from the properties.
+
+![Power geometry](@site/static/img/geometry_power.svg)
+
+The shape following the linear interpolation of the 3 parameters
+`pencentage`, `radius`, `width` provided for the 2 positions `from` and
+`to`.
+
+## Properties
+
+<table>
+    <tbody>
+        <tr>
+            <th>Prop</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>`color`</td>
+            <td>`?string`</td>
+            <td>Color of the spiral.</td>
+        </tr>
+        <tr>
+            <td>`percentageFrom`</td>
+            <td>`0 <= number <= 1`</td>
+            <td>Angular starting point of the component.</td>
+        </tr>
+        <tr>
+            <td>`percentageTo`</td>
+            <td>`0 <= number <= 1`</td>
+            <td>Angular ending point of the component.</td>
+        </tr>
+        <tr>
+            <td>`radiusFrom`</td>
+            <td>`?number`</td>
+            <td>
+                Radius of the starting point of the component. If unset the
+                radius of the knob is used.
+            </td>
+        </tr>
+        <tr>
+            <td>`radiusTo`</td>
+            <td>`?number`</td>
+            <td>
+                Radius of the ending point of the component. If unset the radius
+                of the knob is used.
+            </td>
+        </tr>
+        <tr>
+            <td>`widthFrom`</td>
+            <td>`number`</td>
+            <td>Width of the component at the starting point.</td>
+        </tr>
+        <tr>
+            <td>`widthTo`</td>
+            <td>`number`</td>
+            <td>Width of the component at the ending point.</td>
+        </tr>
+        <tr>
+            <td>`className`</td>
+            <td>`?string`</td>
+            <td>Tag the component with this class name.</td>
+        </tr>
+        <tr>
+            <td>`interpolateTo`</td>
+            <td>`?boolean`</td>
+            <td>
+                If set, the ending position of the component is computed from an
+                interpolation between `from`/`to` positions with the actual
+                location of the knob.
+            </td>
+        </tr>
+    </tbody>
+</table>

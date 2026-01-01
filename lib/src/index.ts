@@ -7,4 +7,5 @@ export * from './Value';
 export * from './Range';
 export * from './Spiral';
 export * from './Label';
+export * from './Power';
 export * from './types';
