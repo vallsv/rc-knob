@@ -3,13 +3,13 @@
     "version": "0.0.0",
     "private": true,
     "description": "React component library to render knobs",
-    "homepage": "https://eskimoblood.github.io/rc-knob/",
+    "homepage": "https://vallsv.github.io/rc-knob/",
     "repository": {
         "type": "git",
-        "url": "https://github.com/eskimoblood/rc-knob.git"
+        "url": "https://github.com/vallsv/rc-knob.git"
     },
     "bugs": {
-        "url": "https://github.com/eskimoblood/rc-knob/issues"
+        "url": "https://github.com/vallsv/rc-knob/issues"
     },
     "scripts": {
         "prepublishOnly": "cd lib && pnpm prepublishOnly",
