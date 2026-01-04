@@ -9,6 +9,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
+
     - uses: actions/checkout@v1
 
     - name: Install pnpm
@@ -26,6 +27,7 @@ jobs:
         pnpm install
         pnpm test
         pnpm release
+
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v2
       env:
