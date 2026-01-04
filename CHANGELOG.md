@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The description of the knob is now shared to the children as a context
 - The center is now internally stored as a tuple `x, y`
 
+## 1.2.1 - 2025-12-18
+
+### Added
+
+- Setyp properly the typescript description files
+
 ## 1.2.0 - 2023-02-26
 
 ### Added
