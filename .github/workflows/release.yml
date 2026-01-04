@@ -32,7 +32,7 @@ jobs:
         pnpm release
 
     - name: Semantic Release
-      uses: cycjimmy/semantic-release-action@v2
+      uses: cycjimmy/semantic-release-action@v6
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
