@@ -9,6 +9,7 @@ on:
     - docusaurus/package.json
 jobs:
   build-deploy:
+    timeout-minutes: 10
 
     runs-on: ubuntu-latest
 
