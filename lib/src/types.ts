@@ -6,7 +6,10 @@ export interface KnobGeometry {
     angleOffset: number;
     angleRange: number;
     radius: number;
-    center: number;
+    /**
+     * X and Y position of the center related to the upper left corner.
+     */
+    center: [number, number];
 }
 
 /**

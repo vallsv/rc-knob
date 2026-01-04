@@ -2,10 +2,17 @@ import React, { useMemo } from 'react';
 import { useKnobContext } from './context';
 import { KnobGeometry } from 'types';
 
-const pointOnCircle = (center: number, radius: number, angle: number) => ({
-    x: center + radius * Math.cos(angle),
-    y: center + radius * Math.sin(angle),
-});
+function pointOnCircle(
+    center: [number, number],
+    radius: number,
+    angle: number,
+) {
+    return {
+        x: center[0] + radius * Math.cos(angle),
+        y: center[1] + radius * Math.sin(angle),
+    };
+}
+
 const degTorad = (deg: number) => (Math.PI * deg) / 180;
 
 const clampDeg = (deg: number) =>

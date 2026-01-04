@@ -1,10 +1,14 @@
 import { useKnobContext } from './context';
 import React, { useMemo } from 'react';
 
-function pointOnCircle(center: number, radius: number, angle: number) {
+function pointOnCircle(
+    center: [number, number],
+    radius: number,
+    angle: number,
+) {
     return {
-        x: center + radius * Math.cos(angle),
-        y: center + radius * Math.sin(angle),
+        x: center[0] + radius * Math.cos(angle),
+        y: center[1] + radius * Math.sin(angle),
     };
 }
 
@@ -28,7 +32,7 @@ function calcPath(props: {
     arcWidth: number;
     outerRadiusFrom: number;
     outerRadiusTo: number;
-    center: number;
+    center: [number, number];
 }) {
     const {
         percentageFrom,

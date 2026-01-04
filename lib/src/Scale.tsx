@@ -6,7 +6,7 @@ interface RenderProps {
     translateY: number;
     angleOffset: number;
     stepSize: number;
-    center: number;
+    center: [number, number];
     color?: string;
     className?: string;
     active: number;
@@ -35,7 +35,7 @@ function renderCircle({
             fill={i === active ? activeColor : color}
             stroke="none"
             transform={`
-        rotate(${angleOffset + stepSize * i} ${center} ${center}) 
+        rotate(${angleOffset + stepSize * i} ${center[0]} ${center[1]}) 
         translate(${translateX} ${translateY})
         `}
         />
@@ -67,7 +67,7 @@ function renderRect({
             height={tickHeight}
             key={i}
             transform={`
-        rotate(${angleOffset + stepSize * i} ${center} ${center}) 
+        rotate(${angleOffset + stepSize * i} ${center[0]} ${center[1]}) 
         translate(${translateX} ${translateY})
         `}
         />
@@ -137,8 +137,8 @@ export function Scale(props: Props) {
     }
     const stepSize = angleRange / steps;
     const length = steps + (angleRange === 360 ? 0 : 1);
-    const translateX = center - tickWidth / 2;
-    const translateY = center - radius;
+    const translateX = center[0] - tickWidth / 2;
+    const translateY = center[1] - radius;
     if (percentage === null) {
         return <></>;
     }

@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useMemo } from 'react';
 import useUpdate from './useUpdate';
-import type { InteractiveHook, KnobState } from 'types';
+import type { InteractiveHook, KnobGeometry, KnobState } from 'types';
 import { KnobContext } from './context';
 
 interface Props {
@@ -80,15 +80,15 @@ export function Knob(props: PropsWithChildren<Props>) {
         onEnd,
     });
 
-    const geometry = useMemo(() => {
+    const geometry = useMemo<KnobGeometry>(() => {
         const radius = size / 2;
-        const center = size / 2;
+        const cx = size / 2;
         return {
             size,
             angleOffset,
             angleRange,
             radius,
-            center,
+            center: [cx, cx],
         };
     }, [size, angleOffset, angleRange]);
 

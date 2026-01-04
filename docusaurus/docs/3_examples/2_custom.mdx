@@ -91,7 +91,7 @@ function Example(props) {
                 height={i === active ? tickHeight * 3 : tickHeight}
                 key={i}
                 transform={`
-            rotate(${angleOffset + stepSize * i} ${center} ${center})
+            rotate(${angleOffset + stepSize * i} ${center[0]} ${center[1]})
             translate( ${translateX} ${translateY})
         `}
             />
