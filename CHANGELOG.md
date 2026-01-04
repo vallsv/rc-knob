@@ -18,9 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 1.2.1 - 2025-12-18
 
-### Added
+### Fixed
 
-- Setyp properly the typescript description files
+- Setup properly the typescript description files
 
 ## 1.2.0 - 2023-02-26
 
