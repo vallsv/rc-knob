@@ -1,21 +1,20 @@
+import { KnobGeometry } from 'types';
 import { useKnobContext } from './context';
 import React, { useMemo } from 'react';
 
-function pointOnCircle(center: number, radius: number, angle: number) {
+function pointOnCircle(
+    center: [number, number],
+    radius: number,
+    angle: number,
+) {
     return {
-        x: center + radius * Math.cos(angle),
-        y: center + radius * Math.sin(angle),
+        x: center[0] + radius * Math.cos(angle),
+        y: center[1] + radius * Math.sin(angle),
     };
 }
 
 function degTorad(deg: number) {
     return (Math.PI * deg) / 180;
-}
-
-interface Geometry {
-    angleOffset: number;
-    angleRange: number;
-    center: number;
 }
 
 interface Position {
@@ -25,7 +24,7 @@ interface Position {
 }
 
 function calcPath(
-    geometry: Geometry,
+    geometry: KnobGeometry,
     positionFrom: Position,
     positionTo: Position | null,
 ): string | null {
@@ -97,22 +96,18 @@ interface Props {
 
 export function Power(props: Props) {
     const state = useKnobContext('Power');
-    const { percentage, angleOffset, angleRange, center } = state;
+    const { percentage, geometry } = state;
     const {
         interpolateTo,
         color,
         percentageFrom,
-        radiusFrom = state.radius,
+        radiusFrom = geometry.radius,
         percentageTo,
-        radiusTo = state.radius,
+        radiusTo = geometry.radius,
         widthFrom,
         widthTo,
         className,
     } = props;
-
-    const geometry: Geometry = useMemo(() => {
-        return { angleOffset, angleRange, center };
-    }, [angleOffset, angleRange, center]);
 
     const positionFrom: Position = useMemo(
         () => ({

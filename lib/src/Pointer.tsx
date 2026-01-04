@@ -57,7 +57,8 @@ interface Props {
 
 export function Pointer(props: React.PropsWithChildren<Props>) {
     const state = useKnobContext('Pointer');
-    const { angleRange, angleOffset, center } = state;
+    const { geometry } = state;
+    const { angleRange, angleOffset, center } = geometry;
     const {
         children,
         width,
@@ -65,7 +66,7 @@ export function Pointer(props: React.PropsWithChildren<Props>) {
         useRotation = true,
         type,
         percentage = state.percentage,
-        radius = state.radius,
+        radius = geometry.radius,
         color = 'black',
         className,
     } = props;
@@ -75,15 +76,15 @@ export function Pointer(props: React.PropsWithChildren<Props>) {
             return null;
         }
         if (useRotation) {
-            return `rotate(${
-                angleOffset + angleRange * percentage
-            } ${center} ${center})
-					translate( ${center} ${center - radius - (height ?? 0)})`;
+            return `rotate(${angleOffset + angleRange * percentage} ${
+                center[0]
+            } ${center[1]})
+					translate( ${center[0]} ${center[1] - radius - (height ?? 0)})`;
         } else {
             const angle =
                 ((angleOffset + angleRange * percentage - 90) * Math.PI) / 180;
-            const x = center + radius * Math.cos(angle);
-            const y = center + radius * Math.sin(angle);
+            const x = center[0] + radius * Math.cos(angle);
+            const y = center[1] + radius * Math.sin(angle);
             return `translate(${x} ${y})`;
         }
     }, [percentage, angleOffset, angleRange, center, radius, height]);

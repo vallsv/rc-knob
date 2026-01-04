@@ -27,7 +27,7 @@ function customScaleTick({
             className={className}
             key={i}
             transform={`
-        rotate(${angleOffset + stepSize * i} ${center} ${center})
+        rotate(${angleOffset + stepSize * i} ${center[0]} ${center[1]})
         translate( ${translateX} ${translateY})
     `}
         />

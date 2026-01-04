@@ -1,32 +1,31 @@
 import React, { useMemo } from 'react';
 import { useKnobContext } from './context';
+import { KnobGeometry } from 'types';
 
-const pointOnCircle = (center: number, radius: number, angle: number) => ({
-    x: center + radius * Math.cos(angle),
-    y: center + radius * Math.sin(angle),
-});
+function pointOnCircle(
+    center: [number, number],
+    radius: number,
+    angle: number,
+) {
+    return {
+        x: center[0] + radius * Math.cos(angle),
+        y: center[1] + radius * Math.sin(angle),
+    };
+}
+
 const degTorad = (deg: number) => (Math.PI * deg) / 180;
 
 const clampDeg = (deg: number) =>
     deg >= 360 ? 359.999 : deg <= -360 ? -359.999 : deg;
 
-const calcPath = ({
-    percentageFrom,
-    percentageTo,
-    angleOffset,
-    angleRange,
-    arcWidth,
-    radius: outerRadius,
-    center,
-}: {
-    percentageFrom: number;
-    percentageTo: number;
-    angleOffset: number;
-    angleRange: number;
-    arcWidth: number;
-    radius: number;
-    center: number;
-}) => {
+function calcPath(
+    geometry: KnobGeometry,
+    arcWidth: number,
+    outerRadius: number,
+    percentageFrom: number,
+    percentageTo: number,
+) {
+    const { angleRange, angleOffset, center } = geometry;
     const angle = angleRange * (percentageTo - percentageFrom);
     const clampedAngle = clampDeg(angle);
     const angleFrom = angleOffset - 90 + angleRange * percentageFrom;
@@ -48,7 +47,7 @@ const calcPath = ({
     }L${p3.x},${p3.y} A${innerRadius},${innerRadius} 0 ${largeArcFlag} ${
         1 - direction
     } ${p4.x},${p4.y} L${p1.x},${p1.y}`;
-};
+}
 
 interface Props {
     color?: string;
@@ -65,12 +64,12 @@ interface Props {
 
 export function Range(props: Props) {
     const state = useKnobContext('Range');
-    const { percentage } = state;
+    const { percentage, geometry } = state;
     const {
         color,
         percentageFrom = null,
         percentageTo = null,
-        radius = state.radius,
+        radius = geometry.radius,
         outerRadius,
         arcWidth,
         className,
@@ -94,13 +93,13 @@ export function Range(props: Props) {
         if (pFrom === null || pTo === null) {
             return null;
         }
-        return calcPath({
+        return calcPath(
+            geometry,
             arcWidth,
-            ...state,
-            radius: outerRadius ?? radius ?? state.radius,
-            percentageFrom: pFrom,
-            percentageTo: pTo,
-        });
+            outerRadius ?? radius ?? geometry.radius,
+            pFrom,
+            pTo,
+        );
     }, [pFrom, pTo, outerRadius, radius, state]);
 
     if (d === null) {

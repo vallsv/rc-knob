@@ -1,0 +1,9 @@
+{
+    "label": "Base components",
+    "position": 1,
+    "collapsible": false,
+    "link": {
+        "type": "generated-index",
+        "description": "Provided components"
+    }
+}

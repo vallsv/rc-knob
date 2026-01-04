@@ -1,4 +1,18 @@
 /**
+ * Part of the Knob state which is usually unchanged.
+ */
+export interface KnobGeometry {
+    size: number;
+    angleOffset: number;
+    angleRange: number;
+    radius: number;
+    /**
+     * X and Y position of the center related to the upper left corner.
+     */
+    center: [number, number];
+}
+
+/**
  * Knob state as exposed to the sub components
  */
 export interface KnobState {
@@ -12,11 +26,11 @@ export interface KnobState {
      */
     percentage: number | null;
 
-    size: number;
-    angleOffset: number;
-    angleRange: number;
-    radius: number;
-    center: number;
+    /**
+     * Part of the state which is usually unchanged.
+     */
+    geometry: KnobGeometry;
+
     steps?: number;
 }
 

@@ -1,11 +1,15 @@
 import React, { useMemo } from 'react';
 import { useKnobContext } from './context';
 
-function pointOnCircle(center: number, radius: number, angle: number) {
+function pointOnCircle(
+    center: [number, number],
+    radius: number,
+    angle: number,
+) {
     const rad = (angle * Math.PI) / 180;
     return {
-        x: center + radius * Math.cos(rad),
-        y: center + radius * Math.sin(rad),
+        x: center[0] + radius * Math.cos(rad),
+        y: center[1] + radius * Math.sin(rad),
     };
 }
 
@@ -24,11 +28,12 @@ interface Props {
 
 export function Label(props: Props) {
     const state = useKnobContext('Label');
-    const { angleRange, angleOffset, center } = state;
+    const { geometry } = state;
+    const { angleRange, angleOffset, center } = geometry;
     const {
         label,
         percentage,
-        radius = state.radius,
+        radius = geometry.radius,
         className,
         style = {},
         userSelect = 'none',
@@ -46,7 +51,7 @@ export function Label(props: Props) {
         return <></>;
     }
     return (
-        <g transform={`translate( ${center - p.x} ${center - p.y})`}>
+        <g transform={`translate( ${center[0] - p.x} ${center[1] - p.y})`}>
             <text
                 // @ts-expect-error
                 style={{ userSelect, ...style }}

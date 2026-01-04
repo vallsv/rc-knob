@@ -13,7 +13,8 @@ interface Props {
 
 export function Value(props: Props) {
     const state = useKnobContext('Value');
-    const { size } = state;
+    const { geometry } = state;
+    const { size } = geometry;
     const {
         decimalPlace = 0,
         className,

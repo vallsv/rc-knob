@@ -1,6 +1,6 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useMemo } from 'react';
 import useUpdate from './useUpdate';
-import type { InteractiveHook, KnobState } from 'types';
+import type { InteractiveHook, KnobGeometry, KnobState } from 'types';
 import { KnobContext } from './context';
 
 interface Props {
@@ -79,41 +79,27 @@ export function Knob(props: PropsWithChildren<Props>) {
         onStart,
         onEnd,
     });
-    const radius = size / 2;
-    const center = size / 2;
 
-    const [knobState, setKnobState] = useState<KnobState>({
-        value,
-        percentage,
-        size,
-        angleOffset,
-        angleRange,
-        radius,
-        center,
-        steps,
-    });
-
-    useEffect(() => {
-        setKnobState({
-            value,
-            percentage,
+    const geometry = useMemo<KnobGeometry>(() => {
+        const radius = size / 2;
+        const cx = size / 2;
+        return {
             size,
             angleOffset,
             angleRange,
             radius,
-            center,
+            center: [cx, cx],
+        };
+    }, [size, angleOffset, angleRange]);
+
+    const knobState = useMemo<KnobState>(() => {
+        return {
+            value,
+            percentage,
+            geometry,
             steps,
-        });
-    }, [
-        value,
-        percentage,
-        size,
-        angleOffset,
-        angleRange,
-        radius,
-        center,
-        steps,
-    ]);
+        };
+    }, [value, percentage, geometry, steps]);
 
     return (
         <div

@@ -16,6 +16,7 @@ interface Props {
 
 export function Arc(props: Props) {
     const state = useKnobContext('Arc');
+    const { geometry } = state;
     const { percentage } = state;
     const {
         className,
@@ -23,7 +24,7 @@ export function Arc(props: Props) {
         arcWidth,
         color,
         background,
-        radius = state.radius,
+        radius = geometry.radius,
     } = props;
     return (
         <g>
