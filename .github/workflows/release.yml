@@ -33,11 +33,6 @@ jobs:
 
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v6
-      with:
-        branches: |
-          [
-            'v+([0-9])?.+([0-9]).+([0-9])',
-          ]
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
