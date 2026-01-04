@@ -28,9 +28,8 @@ jobs:
 
     - name: pnpm install and test
       run: |
-        cd side
         pnpm install
-        pnpm build
+        pnpm site:build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
