@@ -118,11 +118,12 @@ interface Props {
 
 export function Scale(props: Props) {
     const state = useKnobContext('Scale');
-    const { angleRange, angleOffset, percentage, center } = state;
+    const { percentage, geometry } = state;
+    const { angleRange, angleOffset, center } = geometry;
     const {
         steps = state.steps,
         type = 'rect',
-        radius = state.radius,
+        radius = geometry.radius,
         tickWidth,
         tickHeight,
         color,

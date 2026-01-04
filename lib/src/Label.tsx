@@ -24,11 +24,12 @@ interface Props {
 
 export function Label(props: Props) {
     const state = useKnobContext('Label');
-    const { angleRange, angleOffset, center } = state;
+    const { geometry } = state;
+    const { angleRange, angleOffset, center } = geometry;
     const {
         label,
         percentage,
-        radius = state.radius,
+        radius = geometry.radius,
         className,
         style = {},
         userSelect = 'none',

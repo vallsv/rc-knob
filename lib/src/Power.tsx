@@ -1,3 +1,4 @@
+import { KnobGeometry } from 'types';
 import { useKnobContext } from './context';
 import React, { useMemo } from 'react';
 
@@ -12,12 +13,6 @@ function degTorad(deg: number) {
     return (Math.PI * deg) / 180;
 }
 
-interface Geometry {
-    angleOffset: number;
-    angleRange: number;
-    center: number;
-}
-
 interface Position {
     percentage: number;
     radius: number;
@@ -25,7 +20,7 @@ interface Position {
 }
 
 function calcPath(
-    geometry: Geometry,
+    geometry: KnobGeometry,
     positionFrom: Position,
     positionTo: Position | null,
 ): string | null {
@@ -97,22 +92,18 @@ interface Props {
 
 export function Power(props: Props) {
     const state = useKnobContext('Power');
-    const { percentage, angleOffset, angleRange, center } = state;
+    const { percentage, geometry } = state;
     const {
         interpolateTo,
         color,
         percentageFrom,
-        radiusFrom = state.radius,
+        radiusFrom = geometry.radius,
         percentageTo,
-        radiusTo = state.radius,
+        radiusTo = geometry.radius,
         widthFrom,
         widthTo,
         className,
     } = props;
-
-    const geometry: Geometry = useMemo(() => {
-        return { angleOffset, angleRange, center };
-    }, [angleOffset, angleRange, center]);
 
     const positionFrom: Position = useMemo(
         () => ({

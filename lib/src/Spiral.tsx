@@ -89,7 +89,8 @@ interface Props {
 
 export function Spiral(props: Props) {
     const state = useKnobContext('Spiral');
-    const { percentage, angleOffset, angleRange, center } = state;
+    const { percentage, geometry } = state;
+    const { angleOffset, angleRange, center } = geometry;
     const {
         color,
         percentageFrom = null,

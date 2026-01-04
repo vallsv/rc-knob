@@ -57,7 +57,8 @@ interface Props {
 
 export function Pointer(props: React.PropsWithChildren<Props>) {
     const state = useKnobContext('Pointer');
-    const { angleRange, angleOffset, center } = state;
+    const { geometry } = state;
+    const { angleRange, angleOffset, center } = geometry;
     const {
         children,
         width,
@@ -65,7 +66,7 @@ export function Pointer(props: React.PropsWithChildren<Props>) {
         useRotation = true,
         type,
         percentage = state.percentage,
-        radius = state.radius,
+        radius = geometry.radius,
         color = 'black',
         className,
     } = props;
