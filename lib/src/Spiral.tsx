@@ -51,7 +51,7 @@ function calcPath(props: {
     const startAngleRad = degTorad(startAngle);
     const endAngleRad = degTorad(startAngle + angle);
 
-    const nb = Math.ceil(percentageMax - percentageMin) * 4;
+    const nb = Math.ceil((percentageMax - percentageMin) * 4) + 3;
     let forth = '';
     let start = '';
     let back = '';
