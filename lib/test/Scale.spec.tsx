@@ -111,4 +111,27 @@ describe('Scale', () => {
         );
         expect(container.children[0].children[0].children[0]).toMatchSnapshot();
     });
+    it('renders when value is null', () => {
+        const { container } = render(
+            <Knob
+                min={0}
+                max={100}
+                value={null}
+                size={100}
+                angleOffset={90}
+                angleRange={200}
+            >
+                <Scale
+                    type="circle"
+                    steps={3}
+                    radius={40}
+                    tickWidth={2}
+                    tickHeight={10}
+                    className="someClassName"
+                    activeClassName="someActiveClassName"
+                />
+            </Knob>,
+        );
+        expect(container.children[0].children[0].children[0]).toMatchSnapshot();
+    });
 });

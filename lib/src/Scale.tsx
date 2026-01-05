@@ -9,6 +9,12 @@ interface RenderProps {
     center: [number, number];
     color?: string;
     className?: string;
+
+    /**
+     * Id of the active tick.
+     *
+     * Can be `-1` if there is no active tick in this state.
+     */
     active: number;
     activeColor?: string;
     activeClassName?: string;
@@ -81,7 +87,7 @@ export interface RenderCustomProps extends RenderProps {
     tickWidth: number;
     tickHeight: number;
     steps: number;
-    percentage: number;
+    percentage: number | null;
 }
 
 function renderCustom({
@@ -92,7 +98,7 @@ function renderCustom({
     tickWidth: number;
     tickHeight: number;
     steps: number;
-    percentage: number;
+    percentage: number | null;
 } & RenderProps) {
     return (_: unknown, i: number) => fn({ ...props, i });
 }
@@ -139,11 +145,9 @@ export function Scale(props: Props) {
     const length = steps + (angleRange === 360 ? 0 : 1);
     const translateX = center[0] - tickWidth / 2;
     const translateY = center[1] - radius;
-    if (percentage === null) {
-        return <></>;
-    }
 
-    const active = Math.round((length - 1) * percentage);
+    const active =
+        percentage === null ? -1 : Math.round((length - 1) * percentage);
 
     function getRenderFn() {
         if (steps === undefined) {
@@ -181,9 +185,6 @@ export function Scale(props: Props) {
             });
         }
         if (fn) {
-            if (percentage === null) {
-                return <></>;
-            }
             return renderCustom({
                 fn,
                 tickWidth,

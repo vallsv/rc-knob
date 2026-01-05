@@ -241,3 +241,44 @@ exports[`Scale > renders correct with custom render function for ticks 1`] = `
   />
 </g>
 `;
+
+exports[`Scale > renders when value is null 1`] = `
+<g>
+  <circle
+    class="someClassName"
+    r="2"
+    stroke="none"
+    transform="
+        rotate(90 50 50) 
+        translate(49 10)
+        "
+  />
+  <circle
+    class="someClassName"
+    r="2"
+    stroke="none"
+    transform="
+        rotate(156.66666666666669 50 50) 
+        translate(49 10)
+        "
+  />
+  <circle
+    class="someClassName"
+    r="2"
+    stroke="none"
+    transform="
+        rotate(223.33333333333334 50 50) 
+        translate(49 10)
+        "
+  />
+  <circle
+    class="someClassName"
+    r="2"
+    stroke="none"
+    transform="
+        rotate(290 50 50) 
+        translate(49 10)
+        "
+  />
+</g>
+`;
