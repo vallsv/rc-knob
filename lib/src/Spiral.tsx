@@ -1,15 +1,14 @@
 import { useKnobContext } from './context';
 import React, { useMemo } from 'react';
 
-function pointOnCircle(
+function pathCoordOnCircle(
     center: [number, number],
     radius: number,
     angle: number,
-) {
-    return {
-        x: center[0] + radius * Math.cos(angle),
-        y: center[1] + radius * Math.sin(angle),
-    };
+): string {
+    const x = (center[0] + radius * Math.cos(angle)).toFixed(3);
+    const y = (center[1] + radius * Math.sin(angle)).toFixed(3);
+    return `${x},${y}`;
 }
 
 function degTorad(deg: number) {
@@ -51,7 +50,7 @@ function calcPath(props: {
     const startAngleRad = degTorad(startAngle);
     const endAngleRad = degTorad(startAngle + angle);
 
-    const nb = Math.ceil(percentageMax - percentageMin) * 4;
+    const nb = Math.ceil((percentageMax - percentageMin) * 4) + 3;
     let forth = '';
     let start = '';
     let back = '';
@@ -63,19 +62,22 @@ function calcPath(props: {
         const innerRadius = outerRadius - arcWidth;
         const angleRad = startAngleRad + (endAngleRad - startAngleRad) * coef;
         const angleDeg = ((angleRad * 180) / Math.PI) * coef;
-        const po = pointOnCircle(center, outerRadius, angleRad);
-        const pi = pointOnCircle(center, innerRadius, angleRad);
+        const po = pathCoordOnCircle(center, outerRadius, angleRad);
+        const pi = pathCoordOnCircle(center, innerRadius, angleRad);
         if (i === 0) {
-            start = `${po.x},${po.y} `;
+            start = `${po} `;
         } else {
-            forth += `${outerRadius},${outerRadius} ${angleDeg} 0 1 ${po.x},${po.y} `;
+            forth += `${outerRadius.toFixed(3)},${outerRadius.toFixed(
+                3,
+            )} ${angleDeg.toFixed(3)} 0 1 ${po} `;
         }
         if (i === nb) {
-            link = `${pi.x},${pi.y} `;
+            link = `${pi} `;
         } else {
             back =
-                `${innerRadius},${innerRadius} ${angleDeg} 0 0 ${pi.x},${pi.y} ` +
-                back;
+                `${innerRadius.toFixed(3)},${innerRadius.toFixed(
+                    3,
+                )} ${angleDeg.toFixed(3)} 0 0 ${pi} ` + back;
         }
     }
     return `M ${start}A ${forth}L ${link}A ${back}z`;
