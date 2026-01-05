@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Fixed `Pointer`, which was rendering a string in some context, instead of a JSX element
+
+### Changed
+
+- Changed `Scale`, which was skipped when no value was set to the component. Now it is rendered.
+- Changed `RenderCustomProps`type, which is now valid for `percentage=null`
+
 ## 1.3.0 - 2026-01-05
 
 ### Added
