@@ -90,7 +90,7 @@ export function Pointer(props: React.PropsWithChildren<Props>) {
     }, [percentage, angleOffset, angleRange, center, radius, height]);
 
     if (transform === null) {
-        return '<></>';
+        return <></>;
     }
 
     return (
